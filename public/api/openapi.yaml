@@ -1,0 +1,51 @@
+openapi: '3.0.1'
+info:
+  title: Formatador ABNT
+  description:
+    O projeto “Formatador de textos para norma ABNT” tem como propósito ajudar o usuário, que em sua maioria são alunos, 
+    mas podem ser de variados grupos, a formatar quaisquer texto para os requisitos da ABNT, que são amplamente utilizados em todas as áreas.
+  version: '0.1'
+
+servers:
+  - url: http://(host):{porta}/api
+    variables:
+      host: 
+        default: localhost
+      porta: 
+        default: '8000'
+
+paths:
+  /exemplo:
+    get:
+      summary: Formatador ABNT
+      responses:
+        200:
+          description: OK
+
+    post:
+      summary: Formatar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                texto:
+                  type: string
+                  description: texto a ser formatado
+      responses:
+        201:
+          description: Documento criado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: o URI do novo Documento
+        400:
+          description: Requisição inválida
+
+
