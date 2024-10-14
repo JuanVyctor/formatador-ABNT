@@ -7,7 +7,7 @@ info:
   version: '0.1'
 
 servers:
-  - url: http://(host):{porta}/api
+  - url: http://{host}:{porta}/api
     variables:
       host: 
         default: localhost
@@ -15,7 +15,7 @@ servers:
         default: '8000'
 
 paths:
-  /exemplo:
+  /documento:
     get:
       summary: Formatador ABNT
       responses:
@@ -33,7 +33,7 @@ paths:
               properties:
                 texto:
                   type: string
-                  description: texto a ser formatado
+                  description: Texto a ser formatado
       responses:
         201:
           description: Documento criado
@@ -48,4 +48,45 @@ paths:
         400:
           description: Requisição inválida
 
+  /documento/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get: 
+      summary: Acessa um documento.
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
 
+    put:
+      summary: Altera um documento.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                texto:
+                  type: string
+                  description: Texto a ser alterado
+      responses:
+        200:
+          description: OK
+        404:
+          description: Documento não encontrado.
+    
+    delete:
+      summary: Apaga um documento.
+      responses:
+        200:
+          description: Ok
+        400:
+          description: Documento não encontrado    

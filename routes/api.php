@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DocumentoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::prefix('/documento')->name('documento.')->group(function () {
+    Route::get('', [DocumentoController::class, 'index'])->name('index');
+    Route::post('', [DocumentoController::class, 'store'])->name('store');
+
+    Route::get('/{id}', [DocumentoController::class, 'show'])->name('show');
+    Route::put('/{id}', [DocumentoController::class, 'update'])->name('update');
+    Route::delete('/{id}', [DocumentoController::class, 'destroy'])->name('destroy');
 });
