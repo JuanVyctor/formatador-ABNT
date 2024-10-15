@@ -9,7 +9,15 @@ class Documento extends Model
 {
     use HasFactory;
 
+    protected $table = 'db_documentos';
+    
     protected $fillable = [
-        'texto', 'texto_formatado'
+        'doc_texto',
+        'doc_texto_formatado',
+        'doc_usu_id',
     ];
+
+    public function usuarios() {
+        return $this->belongsTo(Usuario::class);
+    }
 }

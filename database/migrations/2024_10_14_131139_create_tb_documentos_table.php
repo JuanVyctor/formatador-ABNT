@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('documentos', function (Blueprint $table) {
+        Schema::create('tb_documentos', function (Blueprint $table) {
             $table->id();
             $table->string('doc_texto');
             $table->string('doc_texto_formatado')->nullable();
-            $table->foreign('doc_usu_id')->references('usu_id')->on('usuarios');
+            $table->bigInteger('doc_usu_id');
+            $table->foreign('doc_usu_id')->references('usu_id')->on('tb_usuarios');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('documentos');
+        Schema::dropIfExists('tb_documentos');
     }
 };
