@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DocumentoController;
+use App\Http\Controllers\GoogleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +27,9 @@ Route::prefix('/documento')->name('documento.')->group(function () {
     Route::get('/{id}', [DocumentoController::class, 'show'])->name('show');
     Route::put('/{id}', [DocumentoController::class, 'update'])->name('update');
     Route::delete('/{id}', [DocumentoController::class, 'destroy'])->name('destroy');
+});
+
+Route::prefix('/google')->name('google.')->group(function () {
+    Route::get('', [GoogleController::class, 'redirectToGoogle'])->name('auth');
+    Route::get('', [GoogleController::class, 'handleGoogleCallback'])->name('callback');
 });
