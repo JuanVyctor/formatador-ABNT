@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('documentos', function (Blueprint $table) {
             $table->id();
-            $table->string('texto');
-            $table->string('texto_formatado');
+            $table->string('doc_texto');
+            $table->string('doc_texto_formatado')->nullable();
+            $table->foreign('doc_usu_id')->references('usu_id')->on('usuarios');
             $table->timestamps();
         });
     }
