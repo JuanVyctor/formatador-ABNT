@@ -15,6 +15,39 @@ servers:
         default: '8000'
 
 paths:
+  /signin:
+    post:
+      summary: Criar usuário
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  description: Nome de usuário
+                email:
+                  type: string
+                  description: Email do usuário
+                senha:
+                  type: string
+                  description: Senha do perfil
+      responses:
+        201:
+          description: Perfil criado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: o URI do novo Usuario
+        400:
+          description: Requisição inválida
+
   /documento:
     get:
       summary: Formatador ABNT
@@ -34,6 +67,9 @@ paths:
                 texto:
                   type: string
                   description: Texto a ser formatado
+                id_usuario:
+                  type: string
+                  description: Usuário dono do documento.
       responses:
         201:
           description: Documento criado
