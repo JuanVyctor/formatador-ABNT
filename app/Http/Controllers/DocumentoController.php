@@ -14,7 +14,9 @@ class DocumentoController extends Controller
 
     public function store(Request $request) {
         $texto = $request->input('texto');
-        $d = Documento::create(['texto' => $texto]);
+        $usuario = auth()->user()->id();
+
+        $d = Documento::create(['doc_texto' => $texto, 'doc_usu_id' => $usuario]);
         $d->save();
 
         return response(
@@ -30,7 +32,7 @@ class DocumentoController extends Controller
         $texto = $request->input('texto');
 
         if ($texto)
-            $documento->texto = $texto;
+            $documento->doc_texto = $texto;
 
         $documento->save();
     }

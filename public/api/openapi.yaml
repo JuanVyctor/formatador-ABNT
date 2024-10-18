@@ -16,8 +16,15 @@ servers:
 
 paths:
   /signin:
+    get:
+      summary: Página de preenchimento de dados de um novo usuário
+      responses:
+        200:
+          description: OK
+        404:
+          description: Página não encontrada
     post:
-      summary: Criar usuário
+      summary: Cria o usuário em questão
       requestBody:
         required: true
         content:
@@ -36,7 +43,7 @@ paths:
                   description: Senha do perfil
       responses:
         201:
-          description: Perfil criado
+          description: Usuário criado
           content:
             application/json:
               schema:
@@ -47,16 +54,48 @@ paths:
                     description: o URI do novo Usuario
         400:
           description: Requisição inválida
+  /login:
+    post:
+      summary: Entra com um usuário existente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Email do usuário
+                senha:
+                  type: string
+                  description: Senha do perfil
+      responses:
+        201:
+          description: Usuário logado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: o URI do usuário logado
+        400:
+          description: Requisição inválida
 
-  /documento:
+  /documentos:
     get:
-      summary: Formatador ABNT
+      summary: Lista de documentos de um usuário
       responses:
         200:
           description: OK
-
+        404:
+          description: Página não encontrada
+          
+  /documento:
     post:
-      summary: Formatar
+      summary: Cria um novo documento formatado
       requestBody:
         required: true
         content:
@@ -69,7 +108,7 @@ paths:
                   description: Texto a ser formatado
                 id_usuario:
                   type: string
-                  description: Usuário dono do documento.
+                  description: Usuário dono do documento
       responses:
         201:
           description: Documento criado
@@ -92,7 +131,7 @@ paths:
         schema:
           type: string
     get: 
-      summary: Acessa um documento.
+      summary: Acessa um documento
       responses:
         200:
           description: Ok
@@ -102,7 +141,7 @@ paths:
                 type: object
 
     put:
-      summary: Altera um documento.
+      summary: Altera um documento
       requestBody:
         required: true
         content:
@@ -117,10 +156,10 @@ paths:
         200:
           description: OK
         404:
-          description: Documento não encontrado.
+          description: Documento não encontrado
     
     delete:
-      summary: Apaga um documento.
+      summary: Apaga um documento
       responses:
         200:
           description: Ok
