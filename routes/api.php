@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/signup', [UserController::class, 'store'])->name('signup');
+
+Route::prefix('/usuarios')->name('usuarios.')->group(function () {
+    Route::get('/{id}',[UserController::class, 'show'])->name('perfil');
+});
+
+Route::get('/documentos/{id}', [DocumentoController::class,'index'])->name('');
 
 Route::prefix('/documento')->name('documento.')->group(function () {
     Route::get('', [DocumentoController::class, 'index'])->name('index');

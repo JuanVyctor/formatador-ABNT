@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Usuario;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
-class UsuarioController extends Controller
+class UserController extends Controller
 {
     public function index() {
-        $usuarios = Usuario::all();
+        $usuarios = User::all();
         return $usuarios;
     }
 
@@ -16,36 +17,36 @@ class UsuarioController extends Controller
         $nome = $request->input('nome');
         $email = $request->input('email');
         $senha = $request->input('senha');
-        $u = Usuario::create(['usu_nome' => $nome, 'usu_email' => $email, 'usu_senha' => bcrypt($senha)]);
+        $u = User::create(['nome' => $nome, 'email' => $email, 'senha' => bcrypt($senha)]);
         $u->save();
 
         return response(
-            ['location' => ('usuarios.show'. $u->id())], 201
+            ['location' => ('usuarios/'. $u->id)], 201
         );
     }
 
-    public function show(Usuario $usuario) {
+    public function show(User $usuario) {
         return $usuario;
     }
 
-    public function update(Request $request, Usuario $usuario) {
+    public function update(Request $request, User $usuario) {
         $nome = $request->input('nome');
         $email = $request->input('email');
         $senha = $request->input('senha');
 
         if ($nome)
-            $usuario->usu_nome = $nome;
+            $usuario->nome = $nome;
         
         if ($email)
-            $usuario->usu_email = $email;
+            $usuario->email = $email;
 
         if ($nome)
-            $usuario->usu_senha = $senha;
+            $usuario->senha = $senha;
 
         $usuario->save();
     }
 
-    public function destroy (Usuario $usuario) {
+    public function destroy (User $usuario) {
         $usuario->delete();
     }
 }

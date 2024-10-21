@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_documentos', function (Blueprint $table) {
+        Schema::create('documentos', function (Blueprint $table) {
             $table->id();
-            $table->string('doc_texto');
-            $table->string('doc_texto_formatado')->nullable();
-            $table->bigInteger('doc_usu_id');
-            $table->foreign('doc_usu_id')->references('usu_id')->on('tb_usuarios');
+            $table->string('texto');
+            $table->string('texto_formatado')->nullable();
+            $table->bigInteger('usu_id');
+            $table->foreign('usu_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

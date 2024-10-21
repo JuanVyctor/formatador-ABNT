@@ -8,16 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Documento extends Model
 {
     use HasFactory;
-
-    protected $table = 'db_documentos';
     
     protected $fillable = [
-        'doc_texto',
-        'doc_texto_formatado',
-        'doc_usu_id',
+        'texto',
+        'texto_formatado',
+        'usu_id',
     ];
 
     public function usuarios() {
-        return $this->belongsTo(Usuario::class);
+        return $this->belongsTo(User::class);
     }
 }

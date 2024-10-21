@@ -8,9 +8,10 @@
 </p>
 
 ## COISAS A FAZER
-- Fazer as coisas do UsuariosController (o CRUD)
-- Implementar as rotas da API relacionadas ao usuário (/singin e /singup)
-- Atualizar o OpenAPI.yaml pra dar pra fazer esses lances pela extensão
+- corrigir os problemas da API de usuário
+- telas
+- com os coisos da API feitas, arrumar as rotas
+- testar essas parada
 
 ## About Laravel
 

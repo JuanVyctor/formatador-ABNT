@@ -4,23 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Documento;
+use App\Models\User;
 
 class DocumentoController extends Controller
 {
-    public function index() {
-        $documentos = Documento::all();
+    public function index(User $user) {
+        $documentos = Documento::where('usu_id', '=', $user->id)->get();
+        // Achar porque isso não tá funcionando
         return $documentos;
     }
 
     public function store(Request $request) {
         $texto = $request->input('texto');
-        $usuario = auth()->user()->id();
+        $usuario = $request->input('usu_id');
 
-        $d = Documento::create(['doc_texto' => $texto, 'doc_usu_id' => $usuario]);
+        $d = Documento::create(['texto' => $texto, 'usu_id' => $usuario]);
         $d->save();
 
         return response(
-            ['location' => ('documentos.show'. $d->id())], 201
+            ['location' => ('documentos/'. $d->id)], 201
         );
     }
 
@@ -32,7 +34,7 @@ class DocumentoController extends Controller
         $texto = $request->input('texto');
 
         if ($texto)
-            $documento->doc_texto = $texto;
+            $documento->texto = $texto;
 
         $documento->save();
     }
