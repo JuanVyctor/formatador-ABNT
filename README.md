@@ -7,11 +7,15 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+# FAZER O GIT CLONE PELA OPÇÃO SSH
+
 ## COISAS A FAZER
-- corrigir os problemas da API de usuário
-- telas
-- com os coisos da API feitas, arrumar as rotas
-- testar essas parada
+- ~~CRUD de documentos~~
+- ~~Corrigir os problemas da API de usuário~~
+- CRUD de usuário
+- Com os coisos da API feitas, arrumar as rotas
+- Telas
+- Testar essas parada
 
 ## About Laravel
 

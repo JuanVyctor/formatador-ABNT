@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -25,11 +24,13 @@ class UserController extends Controller
         );
     }
 
-    public function show(User $usuario) {
+    public function show(int $id) {
+        $usuario = User::find($id);
         return $usuario;
     }
 
-    public function update(Request $request, User $usuario) {
+    public function update(Request $request, int $id) {
+        $usuario = User::find($id);
         $nome = $request->input('nome');
         $email = $request->input('email');
         $senha = $request->input('senha');
@@ -46,7 +47,8 @@ class UserController extends Controller
         $usuario->save();
     }
 
-    public function destroy (User $usuario) {
+    public function destroy (int $id) {
+        $usuario = User::find($id);
         $usuario->delete();
     }
 }

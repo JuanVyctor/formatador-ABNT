@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Documento;
-use App\Models\User;
 
 class DocumentoController extends Controller
 {
-    public function index(User $user) {
-        $documentos = Documento::where('usu_id', '=', $user->id)->get();
-        // Achar porque isso não tá funcionando
+    public function index(int $docId) {
+        $documentos = Documento::where('usu_id', '=', $docId)->get();
         return $documentos;
     }
 
@@ -26,11 +24,13 @@ class DocumentoController extends Controller
         );
     }
 
-    public function show(Documento $documento) {
+    public function show(int $docId) {
+        $documento = Documento::find($docId);
         return $documento;
     }
 
-    public function update(Request $request, Documento $documento) {
+    public function update(Request $request, int $docId) {
+        $documento = Documento::find($docId);
         $texto = $request->input('texto');
 
         if ($texto)
@@ -39,7 +39,8 @@ class DocumentoController extends Controller
         $documento->save();
     }
 
-    public function destroy (Documento $documento) {
+    public function destroy (int $docId) {
+        $documento = Documento::find($docId);
         $documento->delete();
     }
 }
