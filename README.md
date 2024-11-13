@@ -11,11 +11,12 @@
 ## Gerenciamento de Front-End:
 https://www.figma.com/board/qJJc3S2goTrJyoWcXUdPpI/Gerenciamento-de-Front-End-?node-id=0-1&node-type=canvas&t=mJgnnm3MhgwqJstb-0
 
-# FAZER O GIT CLONE PELA OPÇÃO SSH
+## Baixa fidelidade:
+https://www.figma.com/design/K7RT37zGQ4ynUUa1FHuf2D/Baixa-Fidelidade?node-id=0-1&node-type=canvas&t=wGRd1k49FlxwiAjq-0
 
 ## COISAS A FAZER
-- ~~CRUD de documentos~~
-- ~~Corrigir os problemas da API de usuário~~
+- Descobrir porque existe o erro dos tokens
+- Dar um jeito de consertar tal erro
 - CRUD de usuário
 - Com os coisos da API feitas, arrumar as rotas
 - Telas
