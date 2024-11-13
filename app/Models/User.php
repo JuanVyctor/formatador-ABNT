@@ -41,4 +41,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verificado' => 'datetime',
     ];
+    
+    public function documento() : BelongsToMany {
+        return $this->belongsToMany(Documento::class);
+    }
 }

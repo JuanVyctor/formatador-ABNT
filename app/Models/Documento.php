@@ -18,4 +18,8 @@ class Documento extends Model
     public function usuarios() {
         return $this->belongsTo(User::class);
     }
+
+    public function convidado() : HasMany {
+        return $this->hasMany(User::class);
+    }
 }
