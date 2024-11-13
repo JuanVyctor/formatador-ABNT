@@ -7,6 +7,10 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+# Links referentes à Interface de Usuário
+## Gerenciamento de Front-End:
+https://www.figma.com/board/qJJc3S2goTrJyoWcXUdPpI/Gerenciamento-de-Front-End-?node-id=0-1&node-type=canvas&t=mJgnnm3MhgwqJstb-0
+
 # FAZER O GIT CLONE PELA OPÇÃO SSH
 
 ## COISAS A FAZER
