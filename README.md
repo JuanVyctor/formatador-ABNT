@@ -10,7 +10,6 @@
 # FAZER O GIT CLONE PELA OPÇÃO SSH
 
 ## COISAS A FAZER
-- DESZIPAR O ARQUIVO QUE TEM E FAZER O COMMIT DAS COISA DELE
 - ~~CRUD de documentos~~
 - ~~Corrigir os problemas da API de usuário~~
 - CRUD de usuário
