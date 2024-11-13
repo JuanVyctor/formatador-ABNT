@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('documentos', function(Blueprint $table) {
-            $table->dropColumn('texto_formatado');
+            $table->dropIfExists('texto_formatado');
         });
     }
 
