@@ -139,6 +139,9 @@ paths:
                 texto:
                   type: string
                   description: Texto a ser alterado
+                convidados:
+                  type: integer
+                  description: Usuários com permissão de editar o documento
       responses:
         200:
           description: OK

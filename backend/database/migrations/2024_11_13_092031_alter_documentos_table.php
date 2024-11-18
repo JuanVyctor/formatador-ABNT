@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('documentos', function(Blueprint $table) {
-            $table->bigInteger('convidado');
-            $table->foreign('convidado')->references('id')->on('users');
+            $table->bigInteger('convidados');
+            $table->foreign('convidados')->references('id')->on('users');
         });
     }
 
@@ -27,7 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('documentos', function(Blueprint $table) {
-            $table->dropIfExists('convidado');
+            $table->dropColumn('convidados');
         });
     }
 };

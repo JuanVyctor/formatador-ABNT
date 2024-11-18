@@ -12,8 +12,8 @@ class Documento extends Model
     
     protected $fillable = [
         'texto',
-        'texto_formatado',
-        'convidado',
+        'texto_puro',
+        'convidados',
         'usu_id',
     ];
 
@@ -21,7 +21,7 @@ class Documento extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function convidado() : HasMany {
+    public function convidados() : HasMany {
         return $this->hasMany(User::class);
     }
 }
