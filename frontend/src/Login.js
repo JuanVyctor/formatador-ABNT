@@ -1,4 +1,5 @@
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 function FormFloatingCustom() {
   return (
@@ -9,7 +10,7 @@ function FormFloatingCustom() {
           type="email"
           placeholder="name@example.com"
         />
-        <label htmlFor="floatingInputCustom">Email address</label>
+        <label htmlFor="floatingInputCustom">Email</label>
       </Form.Floating>
       <Form.Floating>
         <Form.Control
@@ -17,8 +18,12 @@ function FormFloatingCustom() {
           type="password"
           placeholder="Password"
         />
-        <label htmlFor="floatingPasswordCustom">Password</label>
+        <label htmlFor="floatingPasswordCustom">Senha</label>
       </Form.Floating>
+      <hr></hr>
+      <a><Button variant="outline-primary">Login</Button></a>
+      <hr></hr>
+      <a><Button variant="outline-primary">Primeira vez aqui? Cadastre-se</Button></a>
     </>
   );
 }
