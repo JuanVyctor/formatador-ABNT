@@ -26,6 +26,9 @@ class DocumentoController extends Controller
 
     public function show(int $docId) {
         $documento = Documento::find($docId);
+
+        if(!$documento)
+            return response(status: 404);
         return $documento;
     }
 
@@ -41,6 +44,9 @@ class DocumentoController extends Controller
 
     public function destroy (int $docId) {
         $documento = Documento::find($docId);
+        
+        if (!$documento)
+            return response(status: 404);
         $documento->delete();
     }
 }
