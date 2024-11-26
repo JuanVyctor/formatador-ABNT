@@ -1,0 +1,48 @@
+.custom-nav {
+    background-color: #9179ef;
+  }
+  
+  .custom-nav img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .search-input {
+    padding: 8px 40px 8px 15px; 
+    border: 2px solid white;
+    background-color: transparent;
+    border-radius: 15px;
+    color: white;
+    outline: none;
+  }
+  
+  .search-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 20px;
+  }
+  
+  .about-us-text {
+    color: white;
+    font-size: 17px;
+  }
+  
+  .profile-icon {
+    color: white;
+    font-size: 20px;
+  }
+
+
+  .search-container {
+    width: 450px; 
+  }
+  
