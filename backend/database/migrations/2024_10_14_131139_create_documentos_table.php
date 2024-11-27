@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('documentos', function (Blueprint $table) {
             $table->id();
             $table->string('texto');
-            $table->string('texto_puro');
+            $table->string('texto_puro')->nullable();
             $table->bigInteger('usu_id');
             $table->foreign('usu_id')->references('id')->on('users');
             $table->timestamps();
