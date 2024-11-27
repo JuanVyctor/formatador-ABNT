@@ -3,7 +3,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import '../css/Navigation.css';
 import logo from '../logo.svg';
-import { FaSearch, FaUser } from 'react-icons/fa';
+import { FaSearch } from 'react-icons/fa';
+import { FaCircleUser } from "react-icons/fa6";
 
 function Navigation() {
   return (
@@ -30,7 +31,7 @@ function Navigation() {
         </Form>
         <div className="d-flex align-items-center">
           <span className="about-us-text me-2">About us</span>
-          <FaUser className="profile-icon" />
+          <FaCircleUser className="profile-icon" />
         </div>
       </Container>
     </Navbar>
