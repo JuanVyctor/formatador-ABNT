@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import App from "./App";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
+import Acount from "./components/Acount";
 import Navigation from "./components/Navigation";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -15,6 +16,7 @@ root.render(
     <Navigation />
     <Login />
     <SignUp />
+    <Acount />
   </React.StrictMode>
 );
 
