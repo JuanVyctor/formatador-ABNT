@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import $, { Callbacks } from "jquery";
+import $ from "jquery";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "summernote/dist/summernote-lite.css";
 import "summernote/dist/summernote-lite.js";
