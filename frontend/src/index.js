@@ -6,9 +6,10 @@ import reportWebVitals from "./reportWebVitals";
 import App from "./App";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
-import Acount from "./components/Acount";
+import Account from "./components/Account";
 import Navigation from "./components/Navigation";
 import AxiosTeste from "./AxiosTeste";
+import SummernoteComponent from "./components/Summernote";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -17,8 +18,8 @@ root.render(
     <Navigation />
     <Login />
     <SignUp />
-    <Acount />
-    <AxiosTeste />
+    <Account />
+    <SummernoteComponent />
   </React.StrictMode>
 );
 
