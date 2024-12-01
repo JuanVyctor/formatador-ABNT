@@ -7,14 +7,16 @@ import App from "./App";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Navigation from "./components/Navigation";
+import AxiosTeste from "./AxiosTeste";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     {/* <App /> */}
-    <Navigation />
-    <Login />
-    <SignUp />
+    {/* <Navigation /> */}
+    {/* <Login /> */}
+    {/* <SignUp /> */}
+    <AxiosTeste />
   </React.StrictMode>
 );
 
