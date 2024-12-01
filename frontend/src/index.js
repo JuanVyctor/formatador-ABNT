@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Acount from "./components/Acount";
 import Navigation from "./components/Navigation";
+import AxiosTeste from "./AxiosTeste";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -17,6 +18,7 @@ root.render(
     <Login />
     <SignUp />
     <Acount />
+    <AxiosTeste />
   </React.StrictMode>
 );
 

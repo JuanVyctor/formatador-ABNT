@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Documento;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -26,6 +27,9 @@ class UserController extends Controller
 
     public function show(int $id) {
         $usuario = User::find($id);
+
+        if (!$usuario)
+            return response(status: 404);
         return $usuario;
     }
 
@@ -48,7 +52,16 @@ class UserController extends Controller
     }
 
     public function destroy (int $id) {
+        $documentos = Documento::where('usu_id', $id)->get();
+
+        foreach($documentos as $documento) {
+            $documento->delete();
+        }
+
         $usuario = User::find($id);
+        
+        if (!$usuario)
+            return response(status: 404);
         $usuario->delete();
     }
 }

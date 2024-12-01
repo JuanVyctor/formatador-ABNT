@@ -24,11 +24,13 @@ Route::post('/signup', [UserController::class, 'store'])->name('signup');
 
 Route::prefix('/usuarios')->name('usuarios.')->group(function () {
     Route::get('/{id}',[UserController::class, 'show'])->name('perfil');
+    Route::put('/{id}',[UserController::class, 'update'])->name('update');
+    Route::delete('/{id}',[UserController::class, 'destroy'])->name('destroy');
 });
 
-Route::get('/documentos/{id}', [DocumentoController::class,'index'])->name('');
+Route::get('/usuarios/{id}/documentos', [DocumentoController::class,'index'])->name('');
 
-Route::prefix('/documento')->name('documento.')->group(function () {
+Route::prefix('/documentos')->name('documento.')->group(function () {
     Route::get('', [DocumentoController::class, 'index'])->name('index');
     Route::post('', [DocumentoController::class, 'store'])->name('store');
 

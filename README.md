@@ -12,6 +12,5 @@ https://www.figma.com/design/K7RT37zGQ4ynUUa1FHuf2D/Baixa-Fidelidade?node-id=0-1
 
 ## COISAS A FAZER NO BACK
 - Descobrir porque existe o erro dos tokens e arrumar
-- CRUD de usuário
 - Com os coisos da API feitas, arrumar as rotas
 - Testar essas parada
