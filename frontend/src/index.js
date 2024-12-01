@@ -9,6 +9,7 @@ import SignUp from "./components/SignUp";
 import Acount from "./components/Acount";
 import Navigation from "./components/Navigation";
 import AxiosTeste from "./AxiosTeste";
+import SummernoteComponent from "./components/Summernote";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,6 +20,7 @@ root.render(
     <SignUp />
     <Acount />
     <AxiosTeste />
+    <SummernoteComponent />
   </React.StrictMode>
 );
 
