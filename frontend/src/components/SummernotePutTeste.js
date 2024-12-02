@@ -15,16 +15,19 @@ const SummernoteComponentPut = () => {
   
   const id = 24;
   useEffect(() => {
-    api.get(`/documentos/${id}`)
-    .then((response) => setDoc(response.data))
-    .catch((err) => {
-      console.error("ops! ocorreu um erro" + err);
-    });
+    api
+      .get(`/documentos/${id}`)
+      .then((response) => setDoc(response.data))
+      .catch((err) => {
+        console.error("ops! ocorreu um erro" + err);
+      });
 
-      $(editorRef.current).summernote({
-          height: 300,
-          placeholder: "Digite seu texto aqui...",
-          toolbar: [
+    if (!editorRef.current) return;
+
+    $(editorRef.current).summernote({
+      height: 300,
+      placeholder: "Digite seu texto aqui...",
+      toolbar: [
         ["style", ["style"]],
         ["font", ["bold", "italic", "underline", "clear"]],
         ["fontname", ["fontname"]],
@@ -33,39 +36,35 @@ const SummernoteComponentPut = () => {
         ["table", ["table"]],
         ["insert", ["link", "picture", "video"]],
         ["view", ["fullscreen", "codeview", "help"]],
-    ],
-    callbacks: {
-        onChange: function (content, $edidable) {
-            setValue('texto', content);
+      ],
+      callbacks: {
+          onChange: function (content, $edidable) {
+              setValue('texto', content);
+          },
         },
-      },
     });
-
-    if (doc) {
-      $(editorRef.current).summernote("code", doc?.texto);
-    }
     
     return () => {
       $(editorRef.current).summernote("destroy");
     };
   }, []);
+
+  useEffect(() => {
+    if (doc) {
+      $(editorRef.current).summernote("code", doc?.texto);
+    }
+  })
     
-    const addDoc = data => 
-      api.put("/documentos", data)
-      .then(() => {
-        alert('O procedimento deu certo');
-      }).catch(() => {
-        alert('O procedimento deu errado');
-      });
+  const addDoc = data => 
+    api.put(`/documentos/${id}`, data)
+    .then(() => {
+      alert('O procedimento deu certo');
+    }).catch(() => {
+      alert('O procedimento deu errado');
+    });
 
   return (
     <form onSubmit={handleSubmit(addDoc)}>
-      <input
-        type="text"
-        value={doc?.texto}
-        name="teste"
-        {...register("teste")}
-      ></input>
       <Container className="mt-5 text-center">
         <Card
           className="p-4"
