@@ -1,47 +1,49 @@
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import newDocument from '../newDocument.png';
-import imagem from '../imagem.jpg';
+import { useState, useEffect } from 'react';
+import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import newDocument from "../newDocument.png";
+import imagem from "../imagem.jpg";
 import "../css/Dashboard.css";
+import api from "../services/api";
 
- function List() {
-  const listItems = people.map(person =>
-    <li key={person.id}>
-      <img
-        src={getImageUrl(person)}
-        alt={person.name}
-      />
-      <p>
-        <b>{person.name}</b>
-          {' ' + person.profession + ' '}
-          known for {person.accomplishment}
-      </p>
-    </li>
-  );
-  return <ul>{listItems}</ul>;
+function List() {
+  // const listItems = people.map((person) => (
+    // <li key={person.id}>
+    //   <img src={getImageUrl(person)} alt={person.name} />
+    //   <p>
+    //     <b>{person.name}</b>
+    //     {" " + person.profession + " "}
+    //     known for {person.accomplishment}
+    //   </p>
+    // </li>
+  // ));
+  // return <ul>{listItems}</ul>;
 }
 
-
-
-
-
-
-
-
-
 function Grid() {
+  const id = 5;
+  const [docs, setDocs] = useState();
+  useEffect(() => {
+    api
+      .get(`/usuarios/${id}/documentos`)
+      .then((response) => setDocs(response.data))
+      .catch((err) => {
+        console.error("ops! ocorreu um erro" + err);
+      });
+  }, []);
+
   return (
-  <>  
-      <Card style={{ width: '18rem' }}>
+    <div>
+      <Card style={{ width: "18rem" }}>
         <Card.Img variant="top" src={newDocument} />
       </Card>
-      <Card style={{ width: '10rem' }}>
+      <Card style={{ width: "10rem" }}>
         <Card.Body>
           <Card.Img src={imagem} />
         </Card.Body>
       </Card>
-    </>
+    </div>
   );
 }
 
