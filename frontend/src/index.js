@@ -19,10 +19,9 @@ root.render(
     <Dashboard />
     <Login />
     <SignUp />
-    <Account />
     <AboutUs />
     <SummernoteComponent />
-    {/* <SummernoteComponentPut /> */}
+    <SummernoteComponentPut />
   </React.StrictMode>
 );
 
