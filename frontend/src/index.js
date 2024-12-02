@@ -8,6 +8,8 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Account from "./components/Account";
 import Navigation from "./components/Navigation";
+import AboutUs from "./components/AboutUs";
+import Dashboard from "./components/Dashboard";
 import AxiosTeste from "./AxiosTeste";
 import SummernoteComponent from "./components/Summernote";
 
@@ -20,6 +22,8 @@ root.render(
     <SignUp />
     <Account />
     <SummernoteComponent />
+    <AboutUs />
+    <Dashboard />
   </React.StrictMode>
 );
 
