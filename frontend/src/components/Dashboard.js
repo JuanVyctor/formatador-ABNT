@@ -8,31 +8,31 @@ import "../css/Dashboard.css";
 import api from "../services/api";
 
 function List() {
+  // const id = 5;
+  // const [docs, setDocs] = useState();
+  // useEffect(() => {
+  //   api
+  //     .get(`/usuarios/${id}/documentos`)
+  //     .then((response) => setDocs(response.data))
+  //     .catch((err) => {
+  //       console.error("ops! ocorreu um erro" + err);
+  //     });
+  // }, []);
+  // console.log(docs[0]);
   // const listItems = people.map((person) => (
-    // <li key={person.id}>
-    //   <img src={getImageUrl(person)} alt={person.name} />
-    //   <p>
-    //     <b>{person.name}</b>
-    //     {" " + person.profession + " "}
-    //     known for {person.accomplishment}
-    //   </p>
-    // </li>
+  //   <li key={person.id}>
+  //     <img src={getImageUrl(person)} alt={person.name} />
+  //     <p>
+  //       <b>{person.name}</b>
+  //       {" " + person.profession + " "}
+  //       known for {person.accomplishment}
+  //     </p>
+  //   </li>
   // ));
   // return <ul>{listItems}</ul>;
 }
 
 function Grid() {
-  const id = 5;
-  const [docs, setDocs] = useState();
-  useEffect(() => {
-    api
-      .get(`/usuarios/${id}/documentos`)
-      .then((response) => setDocs(response.data))
-      .catch((err) => {
-        console.error("ops! ocorreu um erro" + err);
-      });
-  }, []);
-
   return (
     <div>
       <Card style={{ width: "18rem" }}>
