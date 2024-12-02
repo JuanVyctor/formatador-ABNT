@@ -1,12 +1,32 @@
 import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import newDocument from '../newDocument.png';
+import imagem from '../imagem.jpg';
 
-function KitchenSinkExample() {
+
+function GridExample() {
   return (
-    <Card style={{ width: '20rem' }}>
-      <Card.Img variant="top" src="holder.js/600px400?text=Image cap" />
-    </Card>
+    <Row className='row'>
+        <Col className='col-4'>
+        <a>   
+            <Card className='m-4'>
+                <Card.Body>
+                  <Card.Img src={newDocument}/> 
+                </Card.Body>
+              </Card>
+        </a>
+        </Col>
+        <Col className='col-8'>
+            <Card style={{ width: '10rem' }}>
+              <Card.Body>
+                <Card.Img src={imagem} />
+              </Card.Body>
+            </Card>
+        </Col>
+
+    </Row>
   );
 }
 
-export default KitchenSinkExample;
+export default GridExample;
