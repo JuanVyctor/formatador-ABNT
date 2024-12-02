@@ -10,16 +10,17 @@ import Account from "./components/Account";
 import Navigation from "./components/Navigation";
 import AxiosTeste from "./AxiosTeste";
 import SummernoteComponent from "./components/Summernote";
+import SummernoteComponentPut from "./components/SummernotePutTeste";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    {/* <App /> */}
     <Navigation />
-    <Login />
+    {/* <Login />
     <SignUp />
     <Account />
-    <SummernoteComponent />
+    <SummernoteComponent /> */}
+    <SummernoteComponentPut />
   </React.StrictMode>
 );
 

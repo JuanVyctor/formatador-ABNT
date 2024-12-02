@@ -7,12 +7,20 @@ import { Container, Button, Card } from "react-bootstrap";
 import { useForm } from 'react-hook-form';
 import api from "../services/api";
 
-const SummernoteComponent = () => {
+const SummernoteComponentPut = () => {
 
+  const [doc, setDoc] = useState();
   const { register, handleSubmit, setValue } = useForm();
   const editorRef = useRef(null);
   
+  const id = 24;
   useEffect(() => {
+    api.get(`/documentos/${id}`)
+    .then((response) => setDoc(response.data))
+    .catch((err) => {
+      console.error("ops! ocorreu um erro" + err);
+    });
+
       $(editorRef.current).summernote({
           height: 300,
           placeholder: "Digite seu texto aqui...",
@@ -32,13 +40,18 @@ const SummernoteComponent = () => {
         },
       },
     });
+
+    if (doc) {
+      $(editorRef.current).summernote("code", doc?.texto);
+    }
+    
     return () => {
       $(editorRef.current).summernote("destroy");
     };
   }, []);
     
     const addDoc = data => 
-      api.post("/documentos", data)
+      api.put("/documentos", data)
       .then(() => {
         alert('O procedimento deu certo');
       }).catch(() => {
@@ -47,6 +60,12 @@ const SummernoteComponent = () => {
 
   return (
     <form onSubmit={handleSubmit(addDoc)}>
+      <input
+        type="text"
+        value={doc?.texto}
+        name="teste"
+        {...register("teste")}
+      ></input>
       <Container className="mt-5 text-center">
         <Card
           className="p-4"
@@ -58,11 +77,7 @@ const SummernoteComponent = () => {
         >
           <div ref={editorRef} />
         </Card>
-        <input
-          type="hidden"
-          name="texto"
-          {...register("texto")}
-        ></input>
+        <input type="hidden" name="texto" {...register("texto")}></input>
         <input
           type="hidden"
           value="1"
@@ -82,4 +97,4 @@ const SummernoteComponent = () => {
   );
 };
 
-export default SummernoteComponent;
+export default SummernoteComponentPut;
