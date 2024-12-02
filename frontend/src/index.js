@@ -10,7 +10,6 @@ import Account from "./components/Account";
 import Navigation from "./components/Navigation";
 import AboutUs from "./components/AboutUs";
 import Dashboard from "./components/Dashboard";
-import AxiosTeste from "./AxiosTeste";
 import SummernoteComponent from "./components/Summernote";
 import SummernoteComponentPut from "./components/SummernotePutTeste";
 
