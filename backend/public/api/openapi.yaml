@@ -4,7 +4,7 @@ info:
   description:
     O projeto “Formatador de textos para norma ABNT” tem como propósito ajudar o usuário, que em sua maioria são alunos, 
     mas podem ser de variados grupos, a formatar quaisquer texto para os requisitos da ABNT, que são amplamente utilizados em todas as áreas.
-  version: '0.1'
+  version: '0.9'
 
 servers:
   - url: http://{host}:{porta}/api

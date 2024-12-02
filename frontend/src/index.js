@@ -12,18 +12,19 @@ import AboutUs from "./components/AboutUs";
 import Dashboard from "./components/Dashboard";
 import AxiosTeste from "./AxiosTeste";
 import SummernoteComponent from "./components/Summernote";
+import SummernoteComponentPut from "./components/SummernotePutTeste";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    {/* <App /> */}
     <Navigation />
     <Login />
     <SignUp />
     <Account />
-    <SummernoteComponent />
     <AboutUs />
     <Dashboard />
+    <SummernoteComponent />
+    {/* <SummernoteComponentPut /> */}
   </React.StrictMode>
 );
 

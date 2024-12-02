@@ -7,16 +7,27 @@ import { Container, Button, Card } from "react-bootstrap";
 import { useForm } from 'react-hook-form';
 import api from "../services/api";
 
-const SummernoteComponent = () => {
+const SummernoteComponentPut = () => {
 
+  const [doc, setDoc] = useState();
   const { register, handleSubmit, setValue } = useForm();
   const editorRef = useRef(null);
   
+  const id = 24; //medida temporária antes de implementar rotas
   useEffect(() => {
-      $(editorRef.current).summernote({
-          height: 300,
-          placeholder: "Digite seu texto aqui...",
-          toolbar: [
+    api
+      .get(`/documentos/${id}`)
+      .then((response) => setDoc(response.data))
+      .catch((err) => {
+        console.error("ops! ocorreu um erro" + err);
+      });
+
+    if (!editorRef.current) return;
+
+    $(editorRef.current).summernote({
+      height: 300,
+      placeholder: "Digite seu texto aqui...",
+      toolbar: [
         ["style", ["style"]],
         ["font", ["bold", "italic", "underline", "clear"]],
         ["fontname", ["fontname"]],
@@ -25,25 +36,32 @@ const SummernoteComponent = () => {
         ["table", ["table"]],
         ["insert", ["link", "picture", "video"]],
         ["view", ["fullscreen", "codeview", "help"]],
-    ],
-    callbacks: {
-        onChange: function (content, $edidable) {
-            setValue('texto', content);
+      ],
+      callbacks: {
+          onChange: function (content, $edidable) {
+              setValue('texto', content);
+          },
         },
-      },
     });
+    
     return () => {
       $(editorRef.current).summernote("destroy");
     };
   }, []);
+
+  useEffect(() => {
+    if (doc) {
+      $(editorRef.current).summernote("code", doc?.texto);
+    }
+  })
     
-    const addDoc = data => 
-      api.post("/documentos", data)
-      .then(() => {
-        alert('O procedimento deu certo');
-      }).catch(() => {
-        alert('O procedimento deu errado');
-      });
+  const addDoc = data => 
+    api.put(`/documentos/${id}`, data)
+    .then(() => {
+      alert('O procedimento deu certo');
+    }).catch(() => {
+      alert('O procedimento deu errado');
+    });
 
   return (
     <form onSubmit={handleSubmit(addDoc)}>
@@ -58,11 +76,7 @@ const SummernoteComponent = () => {
         >
           <div ref={editorRef} />
         </Card>
-        <input
-          type="hidden"
-          name="texto"
-          {...register("texto")}
-        ></input>
+        <input type="hidden" name="texto" {...register("texto")}></input>
         <input
           type="hidden"
           value="1"
@@ -82,4 +96,4 @@ const SummernoteComponent = () => {
   );
 };
 
-export default SummernoteComponent;
+export default SummernoteComponentPut;
