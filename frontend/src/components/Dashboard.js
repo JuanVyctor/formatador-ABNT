@@ -3,6 +3,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import newDocument from '../newDocument.png';
 import imagem from '../imagem.jpg';
+import "../css/Dashboard.css";
 
 
 function GridExample() {
