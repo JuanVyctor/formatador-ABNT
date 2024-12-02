@@ -45,4 +45,13 @@
   .search-container {
     width: 450px; 
   }
-  
+
+  .dropButton{
+    background-color: #9179ef;
+    border-style: none;
+  }
+
+  .dropButton:hover{
+    background-color: #9179ef;
+    border-style: none;
+  }
