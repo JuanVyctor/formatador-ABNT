@@ -5,9 +5,9 @@ import Button from "react-bootstrap/Button";
 
 function FormFloatingCustom() {
   return (
-    <>
       <div className="body">
         <div className="">
+          <FaRegCircleUser className="UserIcon mb-4" />
         </div>
         <div className="formulario mt-4">
           <div>
@@ -40,10 +40,14 @@ function FormFloatingCustom() {
                 <Button className="Button">Editar</Button>
               </a>
             </div>
+            <div className="Buttons d-flex justify-content-center">
+              <a>
+                <Button className="Button">Deletar</Button>
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </>
   );
 }
 

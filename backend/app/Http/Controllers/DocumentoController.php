@@ -18,7 +18,9 @@ class DocumentoController extends Controller
         $usuario = $request->input('usu_id');
 
         $d = Documento::create([
-            'texto' => $texto, 'usu_id' => $usuario, 'texto_puro' => $texto_puro
+            'texto' => $texto,
+            'texto_puro' => $texto_puro,
+            'usu_id' => $usuario,
         ]);
         $d->save();
 
