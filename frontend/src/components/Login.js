@@ -2,21 +2,35 @@ import Form from "react-bootstrap/Form";
 import "../css/Login.css";
 import { FaRegCircleUser } from "react-icons/fa6";
 import Button from "react-bootstrap/Button";
+import { useForm } from 'react-hook-form';
+import api from "../services/api";
 
 
 function FormFloatingCustom() {
+  const { register, handleSubmit } = useForm();
+  
+  const addUser = data => 
+  api.post("/signup", data)
+  .then(() => {
+    alert('O procedimento deu certo');
+  }).catch(() => {
+    alert('O procedimento deu errado');
+  });
+
   return (
     <div className="body">
       <div>
         <FaRegCircleUser className="UserIcon mb-4" />
       </div>
       <div className="formulario mt-4">
-        <div>
+        <form onSubmit={handleSubmit(addUser)}>
           <Form.Floating className="mb-4">
             <Form.Control
               id="floatingInputCustom"
               type="email"
               placeholder="name@example.com"
+              name="email"
+              {...register("email")}
             />
             <label htmlFor="floatingInputCustom">Email</label>
           </Form.Floating>
@@ -25,6 +39,8 @@ function FormFloatingCustom() {
               id="floatingPasswordCustom"
               type="password"
               placeholder="Password"
+              name="senha"
+              {...register("senha")}
             />
             <label htmlFor="floatingPasswordCustom">Senha</label>
           </Form.Floating>
@@ -32,9 +48,9 @@ function FormFloatingCustom() {
             <Button className="Button">Login</Button>
           </div>
           <div className="Buttons d-flex justify-content-center">
-            <Button className="Button">Primeira vez aqui? Cadastre-se</Button>
+            <Button className="Button" type="submit">Primeira vez aqui? Cadastre-se</Button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

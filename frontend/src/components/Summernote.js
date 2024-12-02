@@ -6,6 +6,7 @@ import "summernote/dist/summernote-lite.js";
 import { Container, Button, Card } from "react-bootstrap";
 import { useForm } from 'react-hook-form';
 import api from "../services/api";
+import "../css/Summernote.css";
 
 const SummernoteComponent = () => {
 
@@ -15,7 +16,7 @@ const SummernoteComponent = () => {
   useEffect(() => {
       $(editorRef.current).summernote({
           height: 300,
-          placeholder: "Digite seu texto aqui...",
+          placeholder: "<p style='color: white;'>Digite aqui seu texto...</p>",
           toolbar: [
         ["style", ["style"]],
         ["font", ["bold", "italic", "underline", "clear"]],
@@ -48,14 +49,7 @@ const SummernoteComponent = () => {
   return (
     <form onSubmit={handleSubmit(addDoc)}>
       <Container className="mt-5 text-center">
-        <Card
-          className="p-4"
-          style={{
-            backgroundColor: "#A583F5",
-            color: "white",
-            borderRadius: "20px",
-          }}
-        >
+        <Card className="p-4 custom-card">
           <div ref={editorRef} />
         </Card>
         <input
@@ -71,9 +65,8 @@ const SummernoteComponent = () => {
         ></input>
         <Button
           variant="light"
-          className="mt-4"
+          className="mt-4 custom-button"
           type="submit"
-          style={{ border: "2px solid black" }}
         >
           Formatar
         </Button>
