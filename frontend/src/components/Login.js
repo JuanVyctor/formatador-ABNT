@@ -9,8 +9,8 @@ import api from "../services/api";
 function FormFloatingCustom() {
   const { register, handleSubmit } = useForm();
   
-  const addUser = data => 
-  api.post("/signup", data)
+  // const getUser = data => console.log(data)
+  const getUser = data => api.post("/login", data)
   .then(() => {
     alert('O procedimento deu certo');
   }).catch(() => {
@@ -23,7 +23,7 @@ function FormFloatingCustom() {
         <FaRegCircleUser className="UserIcon mb-4" />
       </div>
       <div className="formulario mt-4">
-        <form onSubmit={handleSubmit(addUser)}>
+        <form onSubmit={handleSubmit(getUser)}>
           <Form.Floating className="mb-4">
             <Form.Control
               id="floatingInputCustom"
@@ -45,10 +45,12 @@ function FormFloatingCustom() {
             <label htmlFor="floatingPasswordCustom">Senha</label>
           </Form.Floating>
           <div className="Buttons mb-3 d-flex justify-content-center">
-            <Button className="Button">Login</Button>
+            <Button className="Button" type="submit">
+              Login
+            </Button>
           </div>
           <div className="Buttons d-flex justify-content-center">
-            <Button className="Button" type="submit">Primeira vez aqui? Cadastre-se</Button>
+            <Button className="Button">Primeira vez aqui? Cadastre-se</Button>
           </div>
         </form>
       </div>

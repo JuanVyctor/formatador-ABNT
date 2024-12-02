@@ -18,10 +18,10 @@ root.render(
     <Navigation />
     <Login />
     <SignUp />
-    <Account />
+    {/* <Account />
     <AboutUs />
     <Dashboard />
-    <SummernoteComponent />
+    <SummernoteComponent /> */}
     {/* <SummernoteComponentPut /> */}
   </React.StrictMode>
 );
