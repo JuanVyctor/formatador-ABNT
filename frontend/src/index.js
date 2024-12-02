@@ -8,7 +8,6 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Account from "./components/Account";
 import Navigation from "./components/Navigation";
-import AxiosTeste from "./AxiosTeste";
 import SummernoteComponent from "./components/Summernote";
 import SummernoteComponentPut from "./components/SummernotePutTeste";
 

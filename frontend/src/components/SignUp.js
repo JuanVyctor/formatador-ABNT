@@ -2,25 +2,8 @@ import Form from "react-bootstrap/Form";
 import "../css/SignUp.css";
 import { FaRegCircleUser } from "react-icons/fa6";
 import Button from "react-bootstrap/Button";
-// import $ from "jquery";
-// import '../js.cookie';
-// import { SuapClient } from '../client';
-// import '../settings.sample';
 
 function FormFloatingCustom() {
-
-  // var suap = SuapClient(
-  //   "https://suap.ifrn.edu.br",
-  //   "N5hd7LLkylnfp54A3NzK3Xlnp0XjYQjWAGhUNTDd",
-  //   "http://localhost:8000",
-  //   "http://localhost:8000/dashboard",
-  //   "identificacao email documentos_pessoais"
-  // );
-  // suap.init();
-  // $(document).ready(function () {
-  //   $("#suap").attr("href", suap.getLoginURL());
-  // });
-
   return (
     <>
       <div className="body">
@@ -55,11 +38,6 @@ function FormFloatingCustom() {
             </Form.Floating>
             <div className="Buttons mb-3 d-flex justify-content-center">
               <Button className="Button">Criar Conta</Button>
-            </div>
-            <div className="Buttons mb-3 d-flex justify-content-center">
-              <Button id="suap" className="Button">
-                Criar conta com SUAP
-              </Button>
             </div>
           </div>
         </div>
