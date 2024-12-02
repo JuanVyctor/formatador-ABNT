@@ -1,0 +1,19 @@
+.custom-card {
+    background-color: #A583F5;
+    color: white;
+    border-radius: 20px;
+}
+
+.custom-button {
+    background-color: black;
+    color: white;
+    border-radius: 12px;
+    transition-duration: 0.4s;
+    width: 400px;
+}
+
+.custom-button:hover {
+    background-color: white;
+    color: black;
+    border-color: black;
+}

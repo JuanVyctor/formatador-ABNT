@@ -47,6 +47,35 @@ paths:
                     description: o URI do novo Usuario
         400:
           description: Requisição inválida
+  /login:
+    post:
+      summary: Loga o usuário em questão
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Email do usuário
+                senha:
+                  type: string
+                  description: Senha do perfil
+      responses:
+        200:
+          description: Usuário logado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: o URI do Usuario logado
+        404:
+          description: Usuario não encontrado
   
   /usuarios/{id}:
     parameters:
@@ -64,6 +93,8 @@ paths:
             application/json:
               schema:
                 type: object
+        404:
+          description: Usuário não encontrado
     put: 
       summary: Atualiza um usuario
       requestBody:
