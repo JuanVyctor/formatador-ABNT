@@ -36,10 +36,8 @@ function FormFloatingCustom() {
               />
               <label htmlFor="floatingPasswordCustom">Senha</label>
             </Form.Floating>
-            <div className="Buttons d-flex justify-content-center">
-              <a>
-                <Button className="Button">Criar Conta</Button>
-              </a>
+            <div className="Buttons mb-3 d-flex justify-content-center">
+              <Button className="Button">Criar Conta</Button>
             </div>
           </div>
         </div>

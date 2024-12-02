@@ -7,10 +7,10 @@ https://www.figma.com/design/K7RT37zGQ4ynUUa1FHuf2D/Baixa-Fidelidade?node-id=0-1
 
 ## COISAS A FAZER NO FRONT
 - Telas
-- Movimentação entre elas
-- Integração com o back (bem no futuro)
+- => tela de dashboard
+- Movimentação entre elas (rotas)
 
 ## COISAS A FAZER NO BACK
-- Descobrir porque existe o erro dos tokens e arrumar
-- Com os coisos da API feitas, arrumar as rotas
-- Testar essas parada
+- Integração com o SUAP
+- Terminar a formatação do texto Summernote
+- Implementar o CRUD de usuário

@@ -3,14 +3,12 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import reportWebVitals from "./reportWebVitals";
-import App from "./App";
+import Navigation from "./components/Navigation";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Account from "./components/Account";
-import Navigation from "./components/Navigation";
 import AboutUs from "./components/AboutUs";
 import Dashboard from "./components/Dashboard";
-import AxiosTeste from "./AxiosTeste";
 import SummernoteComponent from "./components/Summernote";
 import SummernoteComponentPut from "./components/SummernotePutTeste";
 
