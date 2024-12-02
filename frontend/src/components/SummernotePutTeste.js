@@ -13,7 +13,7 @@ const SummernoteComponentPut = () => {
   const { register, handleSubmit, setValue } = useForm();
   const editorRef = useRef(null);
   
-  const id = 24;
+  const id = 24; //medida temporária antes de implementar rotas
   useEffect(() => {
     api
       .get(`/documentos/${id}`)
