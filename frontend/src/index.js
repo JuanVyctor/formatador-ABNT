@@ -17,8 +17,8 @@ root.render(
   <React.StrictMode>
     <Navigation />
     <Login />
-    {/* <SignUp />
-    <Account /> */}
+    <SignUp />
+    {/* <Account /> */}
     <SummernoteComponent />
     {/* <SummernoteComponentPut /> */}
   </React.StrictMode>

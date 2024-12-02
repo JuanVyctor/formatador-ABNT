@@ -8,18 +8,18 @@
 import Cookies from 'js-cookie';
 
 (function (factory) {
-	if (typeof define === 'function' && define.amd) {
-		define(factory);
-	} else if (typeof exports === 'object') {
-		module.exports = factory();
-	} else {
-		var _OldCookies = window.Cookies;
-		var api = window.Cookies = factory();
-		api.noConflict = function () {
-			window.Cookies = _OldCookies;
-			return api;
-		};
-	}
+	// if (typeof define === 'function' && define.amd) {
+	// 	define(factory);
+	// } else if (typeof exports === 'object') {
+	// 	module.exports = factory();
+	// } else {
+	// 	var _OldCookies = window.Cookies;
+	// 	var api = window.Cookies = factory();
+	// 	api.noConflict = function () {
+	// 		window.Cookies = _OldCookies;
+	// 		return api;
+	// 	};
+	// }
 }(function () {
 	function extend () {
 		var i = 0;
