@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 // import Login from "./components/Login";
 // import SignUp from "./components/SignUp";
-// import Account from "./components/Account";
+import Account from "./components/Account";
 import AboutUs from "./components/AboutUs";
 // import Dashboard from "./components/Dashboard";
 // import SummernoteComponent from "./components/Summernote";
@@ -18,7 +18,8 @@ import AboutUs from "./components/AboutUs";
         <Router>
                 <Routes>
                     <Route path="/" element={<Navigation/>}></Route>
-                    <Route path="/aboutus" element={<AboutUs/>}></Route>
+                    <Route path="/about_us" element={<AboutUs/>}></Route>
+                    <Route path="/account/id" element={<Account/>}></Route>
                 </Routes>
         </Router>
      )

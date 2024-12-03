@@ -6,6 +6,7 @@ import logo from '../logo.svg';
 import { FaSearch } from 'react-icons/fa';
 import { FaCircleUser } from "react-icons/fa6";
 import Dropdown from 'react-bootstrap/Dropdown';
+import { Link, useParams } from "react-router-dom";
 
 const Navigation = () => {
   return (
@@ -32,7 +33,9 @@ const Navigation = () => {
           </div>
         </Form>
         <div className="d-flex align-items-center">
-          <span className="about-us-text me-2">About us</span>
+          <Link to="/about_us">
+            <span className="about-us-text me-2">About us</span>
+          </Link>
         <Dropdown>
             <Dropdown.Toggle className='dropButton' id="dropdown-basic">
                 <FaCircleUser className="profile-icon" />
