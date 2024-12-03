@@ -4,13 +4,16 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import Button from "react-bootstrap/Button";
 import { useForm } from 'react-hook-form';
 import api from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 function FormFloatingCustom() {
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
   
   const handleAddUser = data => api.post("/cadastrar", data)
   .then(() => {
     alert('O procedimento deu certo');
+    navigate(`/meus_documentos/${data['usu_id']}`);
   }).catch(() => {
     alert('O procedimento deu errado');
   });

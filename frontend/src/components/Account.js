@@ -5,17 +5,15 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import Button from "react-bootstrap/Button";
 import { useForm } from 'react-hook-form';
 import api from "../services/api";
+import { useNavigate } from "react-router-dom";
 
-function FormFloatingCustom() {
-  const id = 2;
-
+function FormFloatingCustom(id) {
   const [user, setUser] = useState();
   const { register, handleSubmit, setValue } = useForm();
+  const navigate = useNavigate();
 
   let nome = user?.nome;
   let email = user?.email;
-  setValue('nome', nome);
-  setValue('email', email);
 
   api.get(`/usuarios/${id}`)
   .then((response) => setUser(response.data))
@@ -27,8 +25,10 @@ function FormFloatingCustom() {
     api.put(`/usuarios/${id}`, data)
     .then(() => {
       alert('O procedimento deu certo');
+      navigate(`/perfil/${id}`);
     }).catch(() => {
       alert('O procedimento deu errado');
+      navigate(`/perfil/${id}`);
     });
 
   function handleDeleteUser() {
@@ -36,8 +36,10 @@ function FormFloatingCustom() {
       api.delete(`/usuarios/${id}`)
       .then(() => {
         alert('Conta deletada com sucesso.');
+        navigate(`/`);
       }).catch(() => {
         alert('Ocorreu um erro inesperado.');
+        navigate(`/perfil/${id}`);
       });
     }
   }
@@ -54,6 +56,7 @@ function FormFloatingCustom() {
                 id="floatingNameCustom"
                 type="text"
                 placeholder="Name"
+                value={nome}
                 name="nome"
                 {...register('nome')}
               />
@@ -64,6 +67,7 @@ function FormFloatingCustom() {
                 id="floatingInputCustom"
                 type="email"
                 placeholder="name@example.com"
+                value={email}
                 name="email"
                 {...register('email')}
               />

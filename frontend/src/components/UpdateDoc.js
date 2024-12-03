@@ -8,13 +8,10 @@ import { useForm } from 'react-hook-form';
 import api from "../services/api";
 import "../css/Summernote.css";
 
-const SummernoteComponentAlter = () => {
-
+const UpdateDoc = (id) => {
   const [doc, setDoc] = useState();
   const { register, handleSubmit, setValue } = useForm();
   const editorRef = useRef(null);
-  
-  const id = 3; //medida temporária antes de implementar rotas
 
   function handleDeleteDoc() {
     if (window.confirm('Tem certeza que deseja apagar seu documento?') == true) {
@@ -109,4 +106,4 @@ const SummernoteComponentAlter = () => {
   );
 };
 
-export default SummernoteComponentAlter;
+export default UpdateDoc;
