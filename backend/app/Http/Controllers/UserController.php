@@ -38,6 +38,8 @@ class UserController extends Controller
             'email' => ['required', 'email'],
             'senha' => ['required'],
         ]);
+
+        $u = User::where('email', $dados['email'])->where('senha', $dados['senha']);
         
         // if (Auth::attempt($dados)) {
             $request->session()->regenerate();

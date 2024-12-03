@@ -10,20 +10,19 @@ import Account from "./components/Account";
 import AboutUs from "./components/AboutUs";
 import Dashboard from "./components/Dashboard";
 import SummernoteComponent from "./components/Summernote";
-import SummernoteComponentPut from "./components/SummernotePut";
+import SummernoteComponentAlter from "./components/SummernoteAlter";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Navigation />
+    {/* <Navigation />
     <Dashboard />
     <Login />
-    <SignUp />
+    <SignUp /> */}
     <Account />
-    <AboutUs />
-    <Dashboard />
+    {/* <AboutUs />
     <SummernoteComponent />
-    <SummernoteComponentPut />
+    <SummernoteComponentAlter /> */}
   </React.StrictMode>
 );
 

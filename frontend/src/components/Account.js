@@ -1,21 +1,61 @@
+import { useState } from 'react';
 import Form from "react-bootstrap/Form";
 import "../css/SignUp.css";
 import { FaRegCircleUser } from "react-icons/fa6";
 import Button from "react-bootstrap/Button";
+import { useForm } from 'react-hook-form';
+import api from "../services/api";
 
 function FormFloatingCustom() {
+  const id = 2;
+
+  const [user, setUser] = useState();
+  const { register, handleSubmit, setValue } = useForm();
+
+  let nome = user?.nome;
+  let email = user?.email;
+  setValue('nome', nome);
+  setValue('email', email);
+
+  api.get(`/usuarios/${id}`)
+  .then((response) => setUser(response.data))
+  .catch((err) => {
+    console.error("ops! ocorreu um erro" + err);
+  });
+
+  const handlePutUser = data =>
+    api.put(`/usuarios/${id}`, data)
+    .then(() => {
+      alert('O procedimento deu certo');
+    }).catch(() => {
+      alert('O procedimento deu errado');
+    });
+
+  function handleDeleteUser() {
+    if (window.confirm('Tem certeza que deseja apagar sua conta?') == true) {
+      api.delete(`/usuarios/${id}`)
+      .then(() => {
+        alert('Conta deletada com sucesso.');
+      }).catch(() => {
+        alert('Ocorreu um erro inesperado.');
+      });
+    }
+  }
+  
   return (
       <div className="body">
         <div className="">
           <FaRegCircleUser className="UserIcon mb-4" />
         </div>
         <div className="formulario mt-4">
-          <div>
+          <form onClick={handleSubmit(handlePutUser)}>
             <Form.Floating className="mb-4">
               <Form.Control
                 id="floatingNameCustom"
                 type="text"
                 placeholder="Name"
+                name="nome"
+                {...register('nome')}
               />
               <label htmlFor="floatingNameCustom">Nome</label>
             </Form.Floating>
@@ -24,6 +64,8 @@ function FormFloatingCustom() {
                 id="floatingInputCustom"
                 type="email"
                 placeholder="name@example.com"
+                name="email"
+                {...register('email')}
               />
               <label htmlFor="floatingInputCustom">Email</label>
             </Form.Floating>
@@ -32,6 +74,8 @@ function FormFloatingCustom() {
                 id="floatingPasswordCustom"
                 type="password"
                 placeholder="Password"
+                name="senha"
+                {...register('senha')}
               />
               <label htmlFor="floatingPasswordCustom">Senha</label>
             </Form.Floating>
@@ -40,11 +84,11 @@ function FormFloatingCustom() {
                 <Button className="Button">Editar</Button>
               </a>
             </div>
-            <div className="Buttons d-flex justify-content-center">
-              <a>
-                <Button className="Button">Deletar</Button>
-              </a>
-            </div>
+          </form>
+          <div className="Buttons d-flex justify-content-center">
+            <a>
+              <Button className="Button" onClick={handleDeleteUser}>Deletar</Button>
+            </a>
           </div>
         </div>
       </div>

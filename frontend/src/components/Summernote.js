@@ -38,7 +38,7 @@ const SummernoteComponent = () => {
     };
   }, []);
     
-    const addDoc = data => 
+    const addDoc = data =>
       api.post("/documentos", data)
       .then(() => {
         alert('O procedimento deu certo');
@@ -59,7 +59,7 @@ const SummernoteComponent = () => {
         ></input>
         <input
           type="hidden"
-          value="5"
+          value="2"
           name="usu_id"
           {...register("usu_id")}
         ></input>
