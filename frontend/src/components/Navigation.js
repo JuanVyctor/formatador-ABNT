@@ -6,21 +6,22 @@ import logo from '../logo.svg';
 import { FaSearch } from 'react-icons/fa';
 import { FaCircleUser } from "react-icons/fa6";
 import Dropdown from 'react-bootstrap/Dropdown';
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
   return (
     <Navbar className="custom-nav">
       <Container className="d-flex justify-content-between align-items-center">
-        <Navbar.Brand href="#home">
-        
-          <img
-            alt="Logo"
-            src={logo}
-            width="60"
-            height="60"
-            className="d-inline-block align-top rounded-circle"
-          />
+        <Navbar.Brand>
+          <Link to="formatar_documento">
+            <img
+              alt="Logo"
+              src={logo}
+              width="60"
+              height="60"
+              className="d-inline-block align-top rounded-circle"
+            />
+          </Link>
         </Navbar.Brand>
         <Form className="d-flex justify-content-center flex-grow-0 mx-4">
           <div className="position-relative search-container">
@@ -33,18 +34,22 @@ const Navigation = () => {
           </div>
         </Form>
         <div className="d-flex align-items-center">
-          <Link to="/about_us">
-            <span className="about-us-text me-2">About us</span>
+          <Link to="/sobre_nos" className="about">
+            <span className="about-us-text me-2">Sobre nós</span>
           </Link>
-        <Dropdown>
-            <Dropdown.Toggle className='dropButton' id="dropdown-basic">
-                <FaCircleUser className="profile-icon" />
+          <Dropdown>
+            <Dropdown.Toggle className="dropButton" id="dropdown-basic">
+              <FaCircleUser className="profile-icon" />
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Minha Conta</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Meus Documentos</Dropdown.Item>
+              <Link to={`/login/${1}`}>
+                <Dropdown.Item>Minha Conta</Dropdown.Item>
+              </Link>
+              <Link to={`/meus_documentos/${1}`}>
+                <Dropdown.Item>Meus Documentos</Dropdown.Item>
+              </Link>
             </Dropdown.Menu>
-        </Dropdown>
+          </Dropdown>
         </div>
       </Container>
     </Navbar>

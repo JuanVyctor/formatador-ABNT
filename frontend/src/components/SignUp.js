@@ -8,7 +8,7 @@ import api from "../services/api";
 function FormFloatingCustom() {
   const { register, handleSubmit } = useForm();
   
-  const addUser = data => api.post("/signup", data)
+  const addUser = data => api.post("/cadastrar", data)
   .then(() => {
     alert('O procedimento deu certo');
   }).catch(() => {
