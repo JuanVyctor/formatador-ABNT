@@ -8,13 +8,21 @@ import { useForm } from 'react-hook-form';
 import api from "../services/api";
 import "../css/Summernote.css";
 
-const SummernoteComponentPut = () => {
-
+const UpdateDoc = (id) => {
   const [doc, setDoc] = useState();
   const { register, handleSubmit, setValue } = useForm();
   const editorRef = useRef(null);
-  
-  const id = 24; //medida temporária antes de implementar rotas
+
+  function handleDeleteDoc() {
+    if (window.confirm('Tem certeza que deseja apagar seu documento?') == true) {
+      api.delete(`/documentos/${id}`)
+      .then(() => {
+        alert('Documento deletado com sucesso.');
+      }).catch(() => {
+        alert('Ocorreu um erro inesperado.');
+      });
+    }
+  }
   useEffect(() => {
     api
       .get(`/documentos/${id}`)
@@ -56,7 +64,7 @@ const SummernoteComponentPut = () => {
     }
   })
     
-  const addDoc = data => 
+  const putDoc = data => 
     api.put(`/documentos/${id}`, data)
     .then(() => {
       alert('O procedimento deu certo');
@@ -65,28 +73,37 @@ const SummernoteComponentPut = () => {
     });
 
   return (
-    <form onSubmit={handleSubmit(addDoc)}>
-      <Container className="mt-5 text-center">
-        <Card className="p-4 custom-card">
-          <div ref={editorRef} />
-        </Card>
-        <input type="hidden" name="texto" {...register("texto")}></input>
-        <input
-          type="hidden"
-          value="1"
-          name="usu_id"
-          {...register("usu_id")}
-        ></input>
-        <Button
-          variant="light"
-          className="mt-4 custom-button"
-          type="submit"
-        >
-          Formatar
-        </Button>
-      </Container>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit(putDoc)}>
+        <Container className="mt-5 text-center">
+          <Card className="p-4 custom-card">
+            <div ref={editorRef} />
+          </Card>
+          <input type="hidden" name="texto" {...register("texto")}></input>
+          <input
+            type="hidden"
+            value="1"
+            name="usu_id"
+            {...register("usu_id")}
+          ></input>
+          <Button
+            variant="light"
+            className="mt-4 custom-button me-3"
+            type="submit"
+          >
+            Formatar
+          </Button>
+          <Button
+            variant="light"
+            className="mt-4 custom-button"
+            onClick={handleDeleteDoc}
+          >
+            Deletar
+          </Button>
+        </Container>
+      </form>
+    </div>
   );
 };
 
-export default SummernoteComponentPut;
+export default UpdateDoc;

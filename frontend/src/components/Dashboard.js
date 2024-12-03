@@ -7,8 +7,7 @@ import imagem from "../imagem.jpg";
 import "../css/Dashboard.css";
 import api from "../services/api";
 
-function List() {
-  // const id = 5;
+function List(id) {
   // const [docs, setDocs] = useState();
   // useEffect(() => {
   //   api

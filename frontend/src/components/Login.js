@@ -4,15 +4,17 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import Button from "react-bootstrap/Button";
 import { useForm } from 'react-hook-form';
 import api from "../services/api";
-
+import { Link, useNavigate } from "react-router-dom";
 
 function FormFloatingCustom() {
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
   
   // const getUser = data => console.log(data)
   const getUser = data => api.post("/login", data)
   .then(() => {
     alert('O procedimento deu certo');
+    navigate(`/meus_documentos/${data["usu_id"]}`);
   }).catch(() => {
     alert('O procedimento deu errado');
   });
@@ -50,7 +52,9 @@ function FormFloatingCustom() {
             </Button>
           </div>
           <div className="Buttons d-flex justify-content-center">
-            <Button className="Button">Primeira vez aqui? Cadastre-se</Button>
+            <Link to="/cadastrar">
+              <Button className="Button">Primeira vez aqui? Cadastre-se</Button>
+            </Link>
           </div>
         </form>
       </div>

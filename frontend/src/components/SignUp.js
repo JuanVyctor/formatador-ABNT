@@ -4,13 +4,16 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import Button from "react-bootstrap/Button";
 import { useForm } from 'react-hook-form';
 import api from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 function FormFloatingCustom() {
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
   
-  const addUser = data => api.post("/signup", data)
+  const handleAddUser = data => api.post("/cadastrar", data)
   .then(() => {
     alert('O procedimento deu certo');
+    navigate(`/meus_documentos/${data['usu_id']}`);
   }).catch(() => {
     alert('O procedimento deu errado');
   });
@@ -21,7 +24,7 @@ function FormFloatingCustom() {
         <FaRegCircleUser className="UserIcon mb-4" />
       </div>
       <div className="formulario mt-4">
-        <form onSubmit={handleSubmit(addUser)}>
+        <form onSubmit={handleSubmit(handleAddUser)}>
           <Form.Floating className="mb-4">
             <Form.Control
                 id="floatingNameCustom"
