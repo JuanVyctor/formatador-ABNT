@@ -14,11 +14,11 @@ class DocumentoController extends Controller
 
     public function store(Request $request) {
         $texto = $request->input('texto');
-        $texto_puro = strip_tags($texto);
         $usuario = $request->input('usu_id');
 
         $d = Documento::create([
-            'texto' => $texto, 'usu_id' => $usuario, 'texto_puro' => $texto_puro
+            'texto' => $texto,
+            'usu_id' => $usuario,
         ]);
         $d->save();
 

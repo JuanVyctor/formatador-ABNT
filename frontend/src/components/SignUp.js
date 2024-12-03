@@ -8,7 +8,7 @@ import api from "../services/api";
 function FormFloatingCustom() {
   const { register, handleSubmit } = useForm();
   
-  const addUser = data => api.post("/cadastrar", data)
+  const handleAddUser = data => api.post("/cadastrar", data)
   .then(() => {
     alert('O procedimento deu certo');
   }).catch(() => {
@@ -21,7 +21,7 @@ function FormFloatingCustom() {
         <FaRegCircleUser className="UserIcon mb-4" />
       </div>
       <div className="formulario mt-4">
-        <form onSubmit={handleSubmit(addUser)}>
+        <form onSubmit={handleSubmit(handleAddUser)}>
           <Form.Floating className="mb-4">
             <Form.Control
                 id="floatingNameCustom"
