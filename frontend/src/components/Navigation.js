@@ -81,7 +81,7 @@ const Navigation = () => {
               <Link to={`/login/${1}`} className='dropLink'>
                 <Dropdown.Item>Minha Conta</Dropdown.Item>
               </Link>
-              <Link to={`/meus_documentos`} className='dropLink'>
+              <Link to="/meus_documentos" className='dropLink'>
                 <Dropdown.Item>Meus Documentos</Dropdown.Item>
               </Link>
                 <Dropdown.Item onClick={handleLogout}>Sair</Dropdown.Item>

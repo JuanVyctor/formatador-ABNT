@@ -60,29 +60,38 @@ function List(id) {
 
 function Grid() {
   const [docs, setDocs] = useState([]);
-  const id = 1;
+  const id = 4;
       useEffect(() => {
         api
           .get(`/usuarios/${id}/documentos`)
           .then((response) => {
-            // Achata os arrays internos para obter uma única lista de documentos
-            const documentos = response.data.flat(); // Caso o suporte ao flat() seja garantido
-            setDocs(documentos);
+            setDocs(response.data);
           })
           .catch((err) => {
             console.error("Ops! Ocorreu um erro: " + err);
           });
       }, [id]);
-  
-  
+
+      function mapear(docs) {
+        const lista = [];
+
+        console.log(docs)
+        // docs.forEach(doc => (
+        //   lista.push(
+        //     doc.map((item, index) =>
+        //     <li key={index}>
+        //         <h3>{item.texto}</h3>
+        //       </li>
+        //     )
+        //   )
+        // ));
+
+        return lista;
+      }
+
       return (
-        <div>
-          {docs.map((doc) => (
-            <div key={doc.id}>
-            //   <h3>{doc}</h3>
-            </div>
-          ))}
-        </div>
+        <div>{mapear(docs)}</div>
+        // <ul></ul>
       );
 }
 
