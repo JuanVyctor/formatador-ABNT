@@ -10,10 +10,10 @@ function FormFloatingCustom() {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   
-  const handleAddUser = data => api.post("/cadastrar", data)
+  const handleAddUser = data => api.post("/signup", data)
   .then(() => {
     alert('O procedimento deu certo');
-    navigate(`/meus_documentos/${data['usu_id']}`);
+    navigate(`/meus_documentos/${1}`);
   }).catch(() => {
     alert('O procedimento deu errado');
   });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Models\Documento;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Services\ResponseService; 
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Facades\JWTAuth;
+use JWTAuth;
 
 class UserController extends Controller
 {
@@ -20,16 +21,11 @@ class UserController extends Controller
         return $usuarios;
     }
 
-    public function store(Request $request) {
-        $dados = $request->validate([
-            'nome' => ['required'],
-            'email' => ['required', 'email'],
-            'senha' => ['required'],
-        ]);
+    public function store(UserRequest $request) {
 
-        $nome = $dados['nome'];
-        $email = $dados['email'];
-        $senha = $dados['senha'];
+        $nome = $request->input('nome');
+        $email = $request->input('email');
+        $senha = $request->input('senha');
 
         $u = User::create(['nome' => $nome, 'email' => $email, 'senha' => bcrypt($senha)]);
         $u->save();
@@ -50,6 +46,7 @@ class UserController extends Controller
         } catch (\Throwable|\Exception $e) {
             return ResponseService::exception('users.login', null, $e);
         }
+        
         return response()->json(compact('token'));
     }
 
@@ -106,6 +103,4 @@ class UserController extends Controller
             return ResponseService::exception('users.logout', null, $e);
         }
     }
-    
-
 }
