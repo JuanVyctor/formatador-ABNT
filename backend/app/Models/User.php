@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
-class User extends Authenticatable
+
+class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -45,4 +49,12 @@ class User extends Authenticatable
     public function documento() : BelongsToMany {
         return $this->belongsToMany(Documento::class);
     }
+      public function getJWTIdentifier() //tava no tutorial basicamente 
+      {
+        return $this->getKey(); //tava no tutorial basicamente 
+      }
+      public function getJWTCustomClaims() //tava no tutorial basicamente 
+      {
+        return [];
+      }
 }
