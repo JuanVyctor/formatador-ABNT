@@ -16,7 +16,7 @@ const Home = () => {
   const editorRef = useRef(null);
   
   function formataTexto(texto) {
-    return `<p style="text-align: justify; text-indent: 1.25em; font-family: Arial, Times New Roman, serif; color: black; font-size: 12;">${texto}</p>`;
+    return `<p style="text-align: justify; line-height: 1.5; text-indent: 1.25em; font-family: Arial, Times New Roman, serif; color: black; font-size: 12;">${texto}</p>`;
   }
 
   function handleTexto(e) {
