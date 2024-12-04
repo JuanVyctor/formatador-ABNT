@@ -6,7 +6,7 @@ import "summernote/dist/summernote-lite.js";
 import { Container, Button, Card } from "react-bootstrap";
 import { useForm } from 'react-hook-form';
 import api from "../services/api";
-import "../css/Summernote.css";
+import "../css/Home.css";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -56,10 +56,11 @@ const Home = () => {
     });
 
   return (
-    <div>
-      <textarea placeholder="Coloque aqui o texto não formatado..."onChange={handleTexto} />
-      <form onSubmit={handleSubmit(addDoc)}>
-        <Container className="mt-5 text-center">
+    <Container className="mt-5 text-center conteudo">
+      <div className="caixa">
+        <textarea className="textoSimples" placeholder="Coloque aqui o texto não formatado..." onChange={handleTexto} />
+      </div>
+      <form className="summer" onSubmit={handleSubmit(addDoc)}>
           <Card className="p-4 custom-card">
             <div ref={editorRef} />
           </Card>
@@ -81,9 +82,8 @@ const Home = () => {
           >
             Formatar
           </Button>
-        </Container>
       </form>
-    </div>
+    </Container>
   );
 };
 

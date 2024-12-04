@@ -71,10 +71,10 @@ const Navigation = () => {
               <FaCircleUser className="profile-icon" />
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Link to={`/login/${1}`}>
+              <Link to={`/login/${1}`} className='dropLink'>
                 <Dropdown.Item>Minha Conta</Dropdown.Item>
               </Link>
-              <Link to={`/meus_documentos/${1}`}>
+              <Link to={`/meus_documentos/${1}`} className='dropLink'>
                 <Dropdown.Item>Meus Documentos</Dropdown.Item>
               </Link>
             </Dropdown.Menu>
