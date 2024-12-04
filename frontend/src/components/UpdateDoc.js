@@ -6,7 +6,7 @@ import "summernote/dist/summernote-lite.js";
 import { Container, Button, Card } from "react-bootstrap";
 import { useForm } from 'react-hook-form';
 import api from "../services/api";
-import "../css/Summernote.css";
+import "../css/Home.css";
 
 const UpdateDoc = (id) => {
   const [doc, setDoc] = useState();

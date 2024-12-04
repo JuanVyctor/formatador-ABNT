@@ -6,10 +6,17 @@ import logo from '../logo.svg';
 import { FaSearch } from 'react-icons/fa';
 import { FaCircleUser } from "react-icons/fa6";
 import Dropdown from 'react-bootstrap/Dropdown';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import api from '../services/api';
 
 
 const Navigation = () => {
+
+  const navigate = useNavigate();
+  function handleLogout(id) {
+    api.post('/logout', id);
+    navigate('/');
+  }
   // const estaLogado = true;
   // const conta = ({}) => {
   //   if (estaLogado == true) {
@@ -71,12 +78,13 @@ const Navigation = () => {
               <FaCircleUser className="profile-icon" />
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Link to={`/login/${1}`}>
+              <Link to={`/login/${1}`} className='dropLink'>
                 <Dropdown.Item>Minha Conta</Dropdown.Item>
               </Link>
-              <Link to={`/meus_documentos/${1}`}>
+              <Link to={`/meus_documentos/${1}`} className='dropLink'>
                 <Dropdown.Item>Meus Documentos</Dropdown.Item>
               </Link>
+                <Dropdown.Item onClick={handleLogout}>Sair</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </div>
