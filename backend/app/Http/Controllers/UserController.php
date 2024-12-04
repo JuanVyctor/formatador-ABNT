@@ -39,9 +39,9 @@ class UserController extends Controller
         $credentials = $request->only('email', 'senha');
         try {
             $user = User::where('email', $credentials['email'])->first();
-            if (!$user || !Hash::check($credentials['senha'], $user->senha)) {
+            if (!$user || !Hash::check($credentials['senha'], $user->senha)) 
                 return response()->json(['message' => 'Credenciais incorretas, verifique-as e tente novamente.'], 401);
-            }
+                
         $token = JWTAuth::fromUser($user);
         } catch (\Throwable|\Exception $e) {
             return ResponseService::exception('users.login', null, $e);
@@ -50,6 +50,9 @@ class UserController extends Controller
         return response()->json(compact('token'));
     }
 
+    public function userToken() {
+        $token = request()->bearerToken();
+    }
 
     public function show(int $id) {
         $usuario = User::find($id);
@@ -81,23 +84,23 @@ class UserController extends Controller
     public function destroy (int $id) {
         $documentos = Documento::where('usu_id', $id)->get();
 
-        foreach($documentos as $documento) {
+        foreach($documentos as $documento) 
             $documento->delete();
-        }
 
         $usuario = User::find($id);
         
         if (!$usuario)
             return response(status: 404);
+
         $usuario->delete();
     }
 
     public function logout(Request $request) {
         try {
             $token = $request->bearerToken(); //recebe o token do cabeçalho
-            if (!JWTAuth::invalidate($token)) { //tenta invalidar o token
+            if (!JWTAuth::invalidate($token))  //tenta invalidar o token
                 throw new \Exception('Erro. Tente novamente.', -404);
-            }
+
             return response(['status' => true, 'msg' => 'Deslogado com sucesso'], 200);
         } catch (\Throwable|\Exception $e) {
             return ResponseService::exception('users.logout', null, $e);
