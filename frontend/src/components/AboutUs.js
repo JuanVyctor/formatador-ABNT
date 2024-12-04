@@ -43,27 +43,27 @@ function RowColLayoutColWidthBreakpointExample() {
                         </Card.Body>
                 </Card>
                 <Card className='m-3'>
-                    <Card.Header className='fundoCardTitle'>Passo 3</Card.Header>
-                        <Card.Body>
-                            <Card.Title> Ajuste a identação e detalhes que desejar </Card.Title>
-                            <Card.Img src={passo3} />
-                        </Card.Body>
-                </Card>
-            </Col>
-            <Col className='cards'>
-            <Card className='m-3'>
                     <Card.Header className='fundoCardTitle'>Passo 2</Card.Header>
                         <Card.Body>
                             <Card.Title> Cole o seu texto nesse espaço </Card.Title>
                             <Card.Img src={passo2} />
                         </Card.Body>
                 </Card>
+            </Col>
+            <Col className='cards'>
+                <Card className='m-3'>
+                    <Card.Header className='fundoCardTitle'>Passo 3</Card.Header>
+                        <Card.Body>
+                            <Card.Title> Ajuste a identação e detalhes que desejar </Card.Title>
+                            <Card.Img src={passo3} />
+                        </Card.Body>
+                </Card>
                 <Card className='m-3'>
                     <Card.Header className='fundoCardTitle'>Passo 4</Card.Header>
-                        <Card.Body>
-                            <Card.Title> Se quiser, salve seu documento clicando em "Formatar" </Card.Title>
-                            <Card.Img src={passo4} />
-                        </Card.Body>
+                    <Card.Body>
+                        <Card.Title> Se quiser, salve seu documento clicando em "Formatar" </Card.Title>
+                        <Card.Img src={passo4} />
+                    </Card.Body>
                 </Card>
             </Col>
         </Row>
