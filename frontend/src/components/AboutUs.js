@@ -2,9 +2,12 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import imagem from '../imagem.jpg';
 import '../css/AboutUs.css';
 import logo from '../logo.svg';
+import passo1 from '../passo1.png';
+import passo2 from '../passo2.png';
+import passo3 from '../passo3.png';
+import passo4 from '../passo4.png';
 
 function RowColLayoutColWidthBreakpointExample() {
   return (
@@ -30,49 +33,35 @@ function RowColLayoutColWidthBreakpointExample() {
                 </p>
             </Col>
             
-            <Col>
+            <Col className='cards'>
                 <Card className='m-3'>
-                    <Card.Header>Passo 1</Card.Header>
+                    <Card.Header className='fundoCardTitle'>Passo 1</Card.Header>
                         <Card.Body>
                             <Card.Title> Abra a página inicial do Formatador </Card.Title>
-                            <Card.Img src={imagem} />
+                            <Card.Img src={passo1} />
                         </Card.Body>
                 </Card>
                 <Card className='m-3'>
-                    <Card.Header>Passo 3</Card.Header>
+                    <Card.Header className='fundoCardTitle'>Passo 3</Card.Header>
                         <Card.Body>
-                            <Card.Title> Agora, clique em formatar </Card.Title>
-                            <Card.Img src={imagem} />
-                        </Card.Body>
-                </Card>
-                <Card className='m-3'>
-                    <Card.Header>Passo 5</Card.Header>
-                        <Card.Body>
-                            <Card.Title> Se quiser, salve seu documento </Card.Title>
-                            <Card.Img src={imagem} />
+                            <Card.Title> Ajuste a identação e detalhes que desejar </Card.Title>
+                            <Card.Img src={passo3} />
                         </Card.Body>
                 </Card>
             </Col>
-            <Col>
+            <Col className='cards'>
             <Card className='m-3'>
-                    <Card.Header>Passo 2</Card.Header>
+                    <Card.Header className='fundoCardTitle'>Passo 2</Card.Header>
                         <Card.Body>
                             <Card.Title> Cole o seu texto nesse espaço </Card.Title>
-                            <Card.Img src={imagem} />
+                            <Card.Img src={passo2} />
                         </Card.Body>
                 </Card>
                 <Card className='m-3'>
-                    <Card.Header>Passo 4</Card.Header>
+                    <Card.Header className='fundoCardTitle'>Passo 4</Card.Header>
                         <Card.Body>
-                            <Card.Title> Ajuste a identação e detalhes que desejar </Card.Title>
-                            <Card.Img src={imagem} />
-                        </Card.Body>
-                </Card>
-                <Card className='m-3'>
-                    <Card.Header>Passo 6</Card.Header>
-                        <Card.Body>
-                            <Card.Title> Na página de dashboard, acesse seu documento e faça download! </Card.Title>
-                            <Card.Img src={imagem} />
+                            <Card.Title> Se quiser, salve seu documento clicando em "Formatar" </Card.Title>
+                            <Card.Img src={passo4} />
                         </Card.Body>
                 </Card>
             </Col>

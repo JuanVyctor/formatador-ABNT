@@ -15,21 +15,28 @@ const Home = () => {
   const navigate = useNavigate();
   const editorRef = useRef(null);
   
+  function formataTexto(texto) {
+    //margin-left: 3em;"margin-rigth: 2em;  margin-top: 3em; margin-bottom: 2em;
+    return `<p style="text-align: justify; text-indent: 1.25em; font-family: Arial, Times New Roman, serif; color: black; font-size: 12;">${texto}</p>`;
+  }
+
   function handleTexto(e) {
     setValue('texto', e.target.value);
     let texto_seco = e.target.value;
-    let texto_formatado = '<p style="margin-left:; margin-rigth:; margin-top: 0;text-align: justify; text-indent: 1.5em ;font-family: Arial, Times New Roman, serif; color: black; font-size: 12;">' + texto_seco + '</p>'; 
+    let texto = texto_seco.replaceAll('\n', '<br>');
+    let texto_array = texto.split('<br>');
+    let texto_formatado = '';
+    for(let i of texto_array) {
+      texto_formatado += `${formataTexto(i)}`;
+    }
     setTexto(texto_formatado);
   }
   
   useEffect(() => {
     $(editorRef.current).summernote({
       height: 300,
-      placeholder: "<p style='color: white;'>Ele sairá aqui.</p>",
         toolbar: [
-          ["style", ["style"]],
           ["font", ["bold", "italic", "underline", "clear"]],
-          ["fontname", ["fontname"]],
           ["color", ["color"]],
           ["view", [ "codeview", "help"]],
         ],
@@ -59,7 +66,7 @@ const Home = () => {
       </div>
       <form className="summer" onSubmit={handleSubmit(addDoc)}>
           <Card className="p-4 custom-card">
-            <div ref={editorRef} />
+            <div className="text-center" ref={editorRef} />
           </Card>
           <input
             type="hidden"

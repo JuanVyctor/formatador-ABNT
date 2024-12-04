@@ -10,6 +10,8 @@
     text-align: justify;
     margin: 10px;
     font-size: larger;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-indent: 1.25em;
 }
 
 .titulo{
@@ -20,4 +22,20 @@
 
 .linha{
     margin: 20px;
+    font-family: monospace;
+}
+
+.cards {
+    text-align: center;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.fundoCardTitle {
+    background-color: black;
+    color: white;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
