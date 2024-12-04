@@ -10,11 +10,11 @@ function FormFloatingCustom() {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   
-  // const getUser = data => console.log(data)
   const getUser = data => api.post("/login", data)
-  .then(() => {
+  .then((response) => {
     alert('O procedimento deu certo');
-    navigate(`/meus_documentos/${data["usu_id"]}`);
+    localStorage.setItem('token', response.data.token);
+    navigate(`/meus_documentos`);
   }).catch(() => {
     alert('O procedimento deu errado');
   });

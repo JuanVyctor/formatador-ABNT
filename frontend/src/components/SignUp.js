@@ -11,11 +11,12 @@ function FormFloatingCustom() {
   const navigate = useNavigate();
   
   const handleAddUser = data => api.post("/signup", data)
-  .then(() => {
+  .then((response) => {
     alert('O procedimento deu certo');
-    navigate(`/meus_documentos/${1}`);
-  }).catch(() => {
-    alert('O procedimento deu errado');
+    localStorage.setItem('token', response.data.token);
+    navigate(`/meus_documentos`);
+  }).catch((error) => {
+    alert('O procedimento deu errado: ' + error.message);
   });
 
   return (

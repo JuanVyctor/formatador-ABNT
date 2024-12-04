@@ -53,7 +53,7 @@ const Home = () => {
     api.post("/documentos", data)
     .then(() => {
       alert('O procedimento deu certo');
-      navigate(`/meus_documentos/${1}`);
+      navigate(`/meus_documentos`);
     }).catch(() => {
       alert('O procedimento deu errado');
     });

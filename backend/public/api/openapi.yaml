@@ -162,7 +162,27 @@ paths:
         404:
           description: Página não encontrada
 
-  /documentos:
+  /usuarios/{idUser}/documentos/{idDoc}:
+    parameters:
+      - name: idUser
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: idDoc
+        in: path
+        required: true
+        schema:
+          type: integer
+    get: 
+      summary: Acessa um documento
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
     post:
       summary: Cria um novo documento formatado
       requestBody:
@@ -192,22 +212,7 @@ paths:
         400:
           description: Requisição inválida
 
-  /documentos/{id}:
-    parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-    get: 
-      summary: Acessa um documento
-      responses:
-        200:
-          description: Ok
-          content:
-            application/json:
-              schema:
-                type: object
+  /documentos:
 
     put:
       summary: Altera um documento
@@ -236,4 +241,4 @@ paths:
         200:
           description: Ok
         404:
-          description: Documento não encontrado    
+          description: Documento não encontrado   
