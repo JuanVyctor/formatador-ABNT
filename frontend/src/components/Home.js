@@ -16,7 +16,6 @@ const Home = () => {
   const editorRef = useRef(null);
   
   function formataTexto(texto) {
-    //margin-left: 3em;"margin-rigth: 2em;  margin-top: 3em; margin-bottom: 2em;
     return `<p style="text-align: justify; text-indent: 1.25em; font-family: Arial, Times New Roman, serif; color: black; font-size: 12;">${texto}</p>`;
   }
 
@@ -66,7 +65,7 @@ const Home = () => {
       </div>
       <form className="summer" onSubmit={handleSubmit(addDoc)}>
           <Card className="p-4 custom-card">
-            <div className="text-center" ref={editorRef} />
+            <div className="text-center bg-danger" ref={editorRef} />
           </Card>
           <input
             type="hidden"
