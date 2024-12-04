@@ -20,7 +20,7 @@ import Home from "./components/Home";
                     <Route path="/login" element={<Login />}></Route>
                     <Route path="/sobre_nos" element={<AboutUs />}></Route>
                     <Route path="/perfil/:id" element={<Account />}></Route>
-                    <Route path="/meus_documentos/:id" element={<Dashboard />}></Route>
+                    <Route path="/meus_documentos" element={<Dashboard />}></Route>
                     {/* <Route path="/editar_documento/:id" element={<UpdateDoc />}></Route> */}
                 </Routes>
             </Layout>

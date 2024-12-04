@@ -30,8 +30,10 @@ class UserController extends Controller
         $u = User::create(['nome' => $nome, 'email' => $email, 'senha' => bcrypt($senha)]);
         $u->save();
 
+        $token = JWTAuth::fromUser($u);
+
         return response(
-            ['location' => ('usuarios/'. $u->id)], 201
+            ['location' => ('usuarios/'. $u->id), 'token' => $token], 201
         );
     }
 
@@ -42,16 +44,12 @@ class UserController extends Controller
             if (!$user || !Hash::check($credentials['senha'], $user->senha)) 
                 return response()->json(['message' => 'Credenciais incorretas, verifique-as e tente novamente.'], 401);
                 
-        $token = JWTAuth::fromUser($user);
+            $token = JWTAuth::fromUser($user);
         } catch (\Throwable|\Exception $e) {
             return ResponseService::exception('users.login', null, $e);
         }
         
         return response()->json(compact('token'));
-    }
-
-    public function userToken() {
-        $token = request()->bearerToken();
     }
 
     public function show(int $id) {
