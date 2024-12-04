@@ -22,8 +22,9 @@ function RowColLayoutColWidthBreakpointExample() {
                     className="d-inline-block align-top rounded-circle"
                 />
                 <h1 className='titulo'>Quem somos?</h1>
-                <p className='texto'>Somos um grupo do 4º ano de Informática para Web que 
-                idealizou esse sistema visando ajudar todos aqueles que sentem dificuldades 
+                <p className='texto'>Somos um grupo do 4º ano de Informática para Internet do 
+                Instituto Federal do Rio Grande do Norte, Campus Caicó, que idealizou esse sistema
+                visando ajudar todos aqueles que sentem dificuldades 
                 em escrever documentos formais em norma-ABNT. 
                 Buscando solucionar esse problema de forma fácil e intuitiva, 
                 nós desenvolvemos esta aplicação como nosso Projeto Multidisciplinar 
