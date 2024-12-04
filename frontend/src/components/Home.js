@@ -18,7 +18,7 @@ const Home = () => {
   function handleTexto(e) {
     setValue('texto', e.target.value);
     let texto_seco = e.target.value;
-    let texto_formatado = '<p>' + texto_seco + '</p>'; 
+    let texto_formatado = '<p style="margin-left:; margin-rigth:; margin-top: 0;text-align: justify; text-indent: 1.5em ;font-family: Arial, Times New Roman, serif; color: black; font-size: 12;">' + texto_seco + '</p>'; 
     setTexto(texto_formatado);
   }
   
@@ -31,10 +31,7 @@ const Home = () => {
           ["font", ["bold", "italic", "underline", "clear"]],
           ["fontname", ["fontname"]],
           ["color", ["color"]],
-          ["para", ["ul", "ol", "paragraph"]],
-          ["table", ["table"]],
-          ["insert", ["link", "picture", "video"]],
-          ["view", ["fullscreen", "codeview", "help"]],
+          ["view", [ "codeview", "help"]],
         ],
       });
 
