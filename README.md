@@ -10,6 +10,6 @@ https://www.figma.com/design/K7RT37zGQ4ynUUa1FHuf2D/Baixa-Fidelidade?node-id=0-1
 - If's relacionados ao perfil (esforço coletivo)
 
 ## COISAS A FAZER NO BACK
-- Formatação de texto ABNT (Letícia e Isaura)
+- Formatação de texto ABNT: margem da página (Letícia e Isaura)
 - Correção de cadastro e login (Maria)
 - Update de usuários (Juan)
