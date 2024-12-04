@@ -76,7 +76,28 @@ paths:
                     description: o URI do Usuario logado
         404:
           description: Usuario não encontrado
-  
+  /logout:
+    post:
+      summary: Desloga o usuário em questão
+      responses:
+        200:
+          description: Usuário deslogado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    description: Indica se o logout foi bem-sucedido
+                  msg:
+                    type: string
+                    description: Mensagem de confirmação
+        401:
+          description: Token inválido ou não fornecido
+        500:
+          description: Erro interno no servidor
+
   /usuarios/{id}:
     parameters:
       - name: id
