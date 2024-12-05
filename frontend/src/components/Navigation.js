@@ -9,7 +9,6 @@ import { FaCircleUser } from "react-icons/fa6";
 import Dropdown from "react-bootstrap/Dropdown";
 import { Link, useNavigate } from "react-router-dom";
 import api from '../services/api';
-import { useState } from 'react';
 
 const Navigation = () => {
   const [token] = useState(localStorage.getItem('token'));
