@@ -7,7 +7,6 @@ import imagem from "../imagem.jpg";
 import "../css/Dashboard.css";
 import api from "../services/api";
 
-
 function List(id) {
   // export default function List(id) {
   //   const documentosUser = documentos.filter(user =>
@@ -20,10 +19,6 @@ function List(id) {
   //   );
   //   return <ul>{todosDocumentos}</ul>;
   // }
-  
-  
-  
-  
   
   //const [docs, setDocs] = useState();
   // useEffect(() => {
@@ -60,9 +55,10 @@ function List(id) {
 }
 
 function Grid() {
-  const[token] = useState(localStorage.getItem('token'));
+  const [token] = useState(localStorage.getItem('token'));
   const [docs, setDocs] = useState([]);
   const id = 4;
+  
       useEffect(() => {
         api.get(`/usuarios/${id}/documentos`, {
               headers: { Authorization: `Bearer ${token}` },

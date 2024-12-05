@@ -32,11 +32,12 @@
 }
 
 .caixa{
-    width: 120%;
+    width: 110%;
     padding: 20px;
     background-color: #A583F5;
     border-radius: 20px;
     margin-bottom: 50px;
+    margin-top: 10%;
 }
 
 .textoSimples{
