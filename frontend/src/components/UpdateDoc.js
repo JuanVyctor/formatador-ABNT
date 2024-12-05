@@ -8,13 +8,31 @@ import { useForm } from 'react-hook-form';
 import api from "../services/api";
 import "../css/Home.css";
 
+
 const UpdateDoc = (id) => {
+const [texto, setTexto] = useState();
+
+function formataTexto(texto) {
+  return `<p style="text-align: justify; line-height: 1.5; text-indent: 1.25em; font-family: Arial, Times New Roman, serif; color: black; font-size: 12;">${texto}</p>`;
+}
+
+function handleTexto(e) {
+  setValue('texto', e.target.value);
+  let texto_seco = e.target.value;
+  let texto = texto_seco.replaceAll('\n', '<br>');
+  let texto_array = texto.split('<br>');
+  let texto_formatado = '';
+  for(let i of texto_array) {
+    texto_formatado += `${formataTexto(i)}`;
+  }
+  setTexto(texto_formatado);
+}
   const [doc, setDoc] = useState();
   const { register, handleSubmit, setValue } = useForm();
   const editorRef = useRef(null);
 
   function handleDeleteDoc() {
-    if (window.confirm('Tem certeza que deseja apagar seu documento?') == true) {
+    if (window.confirm('Tem certeza que deseja apagar seu documento?') === true) {
       api.delete(`/documentos/${id}`)
       .then(() => {
         alert('Documento deletado com sucesso.');
@@ -37,14 +55,9 @@ const UpdateDoc = (id) => {
       height: 300,
       placeholder: "Digite seu texto aqui...",
       toolbar: [
-        ["style", ["style"]],
         ["font", ["bold", "italic", "underline", "clear"]],
-        ["fontname", ["fontname"]],
         ["color", ["color"]],
-        ["para", ["ul", "ol", "paragraph"]],
-        ["table", ["table"]],
-        ["insert", ["link", "picture", "video"]],
-        ["view", ["fullscreen", "codeview", "help"]],
+        ["view", ["codeview", "help"]],
       ],
       callbacks: {
           onChange: function (content, $edidable) {
@@ -73,9 +86,11 @@ const UpdateDoc = (id) => {
     });
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(putDoc)}>
-        <Container className="mt-5 text-center">
+        <Container className="mt-5 text-center conteudo">
+          <div className="caixa">
+            <textarea className="textoSimples" placeholder="Coloque aqui o texto não formatado..." onChange={handleTexto} />
+          </div>
+      <form className="summer" onSubmit={handleSubmit(putDoc)}>
           <Card className="p-4 custom-card">
             <div ref={editorRef} />
           </Card>
@@ -100,9 +115,8 @@ const UpdateDoc = (id) => {
           >
             Deletar
           </Button>
-        </Container>
       </form>
-    </div>
+        </Container>
   );
 };
 
