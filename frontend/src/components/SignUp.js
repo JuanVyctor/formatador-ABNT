@@ -13,17 +13,16 @@ function FormFloatingCustom() {
   const handleAddUser = data =>
   api.post("/signup", data)
   .then((response) => {
-    console.log(response)
     alert('Usuário criado com sucesso.');
     localStorage.setItem('token', response.data.token);
-    navigate(`/meus_documentos`);
+    navigate(`/`);
   }).catch((error) => {
     alert('Ocorreu um erro inesperado: ' + error.message);
   });
 
   return (
     <div className="body">
-      <div className="">
+      <div>
         <FaRegCircleUser className="UserIcon mb-4" />
       </div>
       <div className="formulario mt-4">

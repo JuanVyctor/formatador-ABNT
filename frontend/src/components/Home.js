@@ -10,7 +10,8 @@ import "../css/Home.css";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const [texto, setTexto] = useState();
+  const [token] = useState(localStorage.getItem('token'));
+  const [texto, setTexto] = useState('');
   const { register, handleSubmit, setValue } = useForm();
   const navigate = useNavigate();
   const editorRef = useRef(null);
@@ -20,15 +21,17 @@ const Home = () => {
   }
 
   function handleTexto(e) {
-    setValue('texto', e.target.value);
-    let texto_seco = e.target.value;
-    let texto = texto_seco.replaceAll('\n', '<br>');
+    let texto_puro = e.target.value;
+    let texto = texto_puro.replaceAll('\n', '<br>');
     let texto_array = texto.split('<br>');
     let texto_formatado = '';
+    
     for(let i of texto_array) {
       texto_formatado += `${formataTexto(i)}`;
     }
+    
     setTexto(texto_formatado);
+    setValue('texto', texto_formatado);
   }
   
   useEffect(() => {
@@ -49,14 +52,20 @@ const Home = () => {
   useEffect(() => {
     $(editorRef.current).summernote("code", texto);
   })
-  const addDoc = data =>
-    api.post("/documentos", data)
-    .then(() => {
-      alert('O procedimento deu certo');
-      navigate(`/meus_documentos`);
-    }).catch((error) => {
-      alert('Ocorreu um erro inesperado: ' + error.message);
-    });
+  const addDoc = data => {
+    if (token === null) {
+      alert("Não é possível salvar um documento sem estar logado.");
+      navigate("/login");
+    } else {
+      api.post("/documentos", data)
+      .then(() => {
+        alert('Documento criado com êxito.');
+        navigate(`/meus_documentos`);
+      }).catch((error) => {
+        alert('Ocorreu um erro inesperado: ' + error.message);
+      });
+    }
+  }
 
   return (
     <Container className="mt-5 text-center conteudo">
@@ -74,7 +83,7 @@ const Home = () => {
           ></input>
           <input
             type="hidden"
-            value="4"
+            value="5"
             name="usu_id"
             {...register("usu_id")}
           ></input>

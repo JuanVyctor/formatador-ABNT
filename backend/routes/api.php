@@ -33,13 +33,14 @@ Route::group(['middleware' => 'jwt.verify'],function () {
     });
 
     Route::get('/usuarios/documentos', [DocumentoController::class,'index'])->name('');
-
-    Route::prefix('/documentos')->name('documento.')->group(function () {
-        Route::get('', [DocumentoController::class, 'index'])->name('index');
-        Route::post('', [DocumentoController::class, 'store'])->name('store');
     
-        Route::get('/{id}', [DocumentoController::class, 'show'])->name('show');
-        Route::put('/{id}', [DocumentoController::class, 'update'])->name('update');
-        Route::delete('/{id}', [DocumentoController::class, 'destroy'])->name('destroy');
-    });
+});
+Route::get('/usuarios/{id}/documentos', [DocumentoController::class,'indexid'])->name('');
+Route::prefix('/documentos')->name('documento.')->group(function () {
+    Route::get('', [DocumentoController::class, 'index'])->name('index');
+    Route::post('', [DocumentoController::class, 'store'])->name('store');
+    
+    Route::get('/{id}', [DocumentoController::class, 'show'])->name('show');
+    Route::put('/{id}', [DocumentoController::class, 'update'])->name('update');
+    Route::delete('/{id}', [DocumentoController::class, 'destroy'])->name('destroy');
 });
