@@ -23,7 +23,7 @@ class UserController extends Controller
         return $usuarios;
     }
 
-    public function store(UserRequest $request) {
+    public function store(Request $request) {
 
         $nome = $request->input('nome');
         $email = $request->input('email');

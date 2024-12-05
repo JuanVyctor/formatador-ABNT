@@ -8,7 +8,7 @@ import AboutUs from "./components/AboutUs";
 import Layout from "./components/Layout";
 import Dashboard from "./components/Dashboard";
 import Home from "./components/Home";
-// import UpdateDoc from "./components/UpdateDoc";
+import UpdateDoc from "./components/UpdateDoc";
 
  const AppRoutes = () => {
      return(
@@ -21,7 +21,7 @@ import Home from "./components/Home";
                     <Route path="/sobre_nos" element={<AboutUs />}></Route>
                     <Route path="/perfil" element={<Account />}></Route>
                     <Route path="/meus_documentos" element={<Dashboard />}></Route>
-                    {/* <Route path="/editar_documento/:id" element={<UpdateDoc />}></Route> */}
+                    <Route path="/editar_documento/:id" element={<UpdateDoc />}></Route>
                 </Routes>
             </Layout>
         </Router>

@@ -13,6 +13,7 @@ function FormFloatingCustom() {
   const handleAddUser = data =>
   api.post("/signup", data)
   .then((response) => {
+    console.log(response)
     alert('Usuário criado com sucesso.');
     localStorage.setItem('token', response.data.token);
     navigate(`/meus_documentos`);

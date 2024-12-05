@@ -12,6 +12,7 @@ import api from "../services/api";
 
 const Navigation = () => {
   const [token] = useState(localStorage.getItem("token"));
+  
   const navigate = useNavigate();
   function handleLogout() {
     api.post("/logout", {
