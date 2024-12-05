@@ -12,6 +12,7 @@ function FormFloatingCustom(id) {
   const { register, handleSubmit, setValue } = useForm();
   const navigate = useNavigate();
 
+  const [token] = useState(localStorage.getItem('token'));
   let nome = user?.nome;
   let email = user?.email;
 
