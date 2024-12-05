@@ -5,42 +5,55 @@ import "summernote/dist/summernote-lite.css";
 import "summernote/dist/summernote-lite.js";
 import { Container, Button, Card } from "react-bootstrap";
 import { useForm } from 'react-hook-form';
+import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import "../css/Home.css";
 
 
-const UpdateDoc = (id) => {
-const [texto, setTexto] = useState();
+const UpdateDoc = () => {
+  const id = 3;
+  const navigate = useNavigate();
 
-function formataTexto(texto) {
-  return `<p style="text-align: justify; line-height: 1.5; text-indent: 1.25em; font-family: Arial, Times New Roman, serif; color: black; font-size: 12;">${texto}</p>`;
-}
-
-function handleTexto(e) {
-  setValue('texto', e.target.value);
-  let texto_seco = e.target.value;
-  let texto = texto_seco.replaceAll('\n', '<br>');
-  let texto_array = texto.split('<br>');
-  let texto_formatado = '';
-  for(let i of texto_array) {
-    texto_formatado += `${formataTexto(i)}`;
+  function formataTexto(texto) {
+    return `<p style="text-align: justify; line-height: 1.5; text-indent: 1.25em; font-family: Arial, Times New Roman, serif; color: black; font-size: 12;">${texto}</p>`;
   }
-  setTexto(texto_formatado);
-}
+  
+  function handleTexto(conteudo) {
+    let texto_seco = conteudo;
+    let texto = texto_seco.replaceAll('\n', '<br>');
+    let texto_array = texto.split('<br>');
+    let texto_formatado = '';
+    for(let i of texto_array) {
+      texto_formatado += `${formataTexto(i)}`;
+    }
+    setValue('texto', texto_formatado);
+  }
+  
   const [doc, setDoc] = useState();
   const { register, handleSubmit, setValue } = useForm();
   const editorRef = useRef(null);
+  
+  const putDoc = data => 
+    api.put(`/documentos/${id}`, data)
+    .then(() => {
+      alert('Documento alterado com sucesso.');
+      navigate('/meus_documentos');
+    }).catch((error) => {
+      alert('Ocorreu um erro inesperado: ' + error.message);
+    });
 
   function handleDeleteDoc() {
     if (window.confirm('Tem certeza que deseja apagar seu documento?') === true) {
       api.delete(`/documentos/${id}`)
       .then(() => {
         alert('Documento deletado com sucesso.');
+        navigate('/meus_documentos');
       }).catch(() => {
         alert('Ocorreu um erro inesperado.');
       });
     }
   }
+  
   useEffect(() => {
     api
       .get(`/documentos/${id}`)
@@ -49,8 +62,8 @@ function handleTexto(e) {
         console.error("ops! ocorreu um erro" + err);
       });
 
-    if (!editorRef.current) return;
-
+      if (!editorRef.current) return;
+      
     $(editorRef.current).summernote({
       height: 300,
       placeholder: "Digite seu texto aqui...",
@@ -60,8 +73,8 @@ function handleTexto(e) {
         ["view", ["codeview", "help"]],
       ],
       callbacks: {
-          onChange: function (content, $edidable) {
-              setValue('texto', content);
+          onChange: function (content) {
+            handleTexto(content)
           },
         },
     });
@@ -75,21 +88,10 @@ function handleTexto(e) {
     if (doc) {
       $(editorRef.current).summernote("code", doc?.texto);
     }
-  })
+  });
     
-  const putDoc = data => 
-    api.put(`/documentos/${id}`, data)
-    .then(() => {
-      alert('O procedimento deu certo');
-    }).catch((error) => {
-      alert('Ocorreu um erro inesperado: ' + error.message);
-    });
-
   return (
-        <Container className="mt-5 text-center conteudo">
-          <div className="caixa">
-            <textarea className="textoSimples" placeholder="Coloque aqui o texto não formatado..." onChange={handleTexto} />
-          </div>
+    <Container className="mt-5 text-center conteudo">
       <form className="summer" onSubmit={handleSubmit(putDoc)}>
           <Card className="p-4 custom-card">
             <div ref={editorRef} />
@@ -116,7 +118,7 @@ function handleTexto(e) {
             Deletar
           </Button>
       </form>
-        </Container>
+    </Container>
   );
 };
 
