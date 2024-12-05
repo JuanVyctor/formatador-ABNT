@@ -1,65 +1,16 @@
 import { useState, useEffect } from 'react';
-import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import newDocument from "../newDocOficial.png";
-import imagem from "../imagem.jpg";
 import "../css/Dashboard.css";
 import api from "../services/api";
 import Container from 'react-bootstrap/esm/Container';
 import { Link } from "react-router-dom";
 
-function List() {
-  // export default function List(id) {
-  //   const documentosUser = documentos.filter(user =>
-  //     person.id === 'id'
-  //   );
-  //   const todosDocumentos = documentosUser.map(user =>
-  //     <li>
-  //       <card></card>
-  //     </li>
-  //   );
-  //   return <ul>{todosDocumentos}</ul>;
-  // }
-  
-  //const [docs, setDocs] = useState();
-  // useEffect(() => {
-  //   api
-  //     .get(`/usuarios/${id}/documentos`)
-  //     .then((response) => setDocs(response.data))
-  //     .catch((err) => {
-  //       console.error("ops! ocorreu um erro" + err);
-  //     });
-  // }, []);
-  // console.log(docs[0]);
-  // const listItems = people.map((person) => (
-  //   <li key={person.id}>
-  //     <img src={getImageUrl(person)} alt={person.name} />
-  //     <p>
-  //       <b>{person.name}</b>
-  //       {" " + person.profession + " "}
-  //       known for {person.accomplishment}
-  //     </p>
-  //   </li>
-  // ));
-  // return <ul>{listItems}</ul>;
-
-
-
-  // <Card style={{ width: "18rem" }}>
-  //       <Card.Img variant="top" src={newDocument} />
-  //     </Card>
-  //     <Card style={{ width: "10rem" }}>
-  //       <Card.Body>
-  //         <Card.Img src={imagem} />
-  //       </Card.Body>
-  //     </Card>
-}
-
 function Grid() {
   const [token] = useState(localStorage.getItem('token'));
   const [docs, setDocs] = useState([]);
-  const id = 5;
+  const id = 1;
   
       useEffect(() => {
         api.get(`/usuarios/${id}/documentos`
@@ -77,6 +28,12 @@ function Grid() {
 
       function mapear() {
         const lista = [];
+        lista.push(docs?.forEach((doc, index) => {
+          console.log(index)
+          // <li>
+          //   Texto do documento {index+1}: {doc['texto']}
+          // </li>
+        }))
         // docs.forEach(doc => (
         //   // lista.push(<li>{doc?.texto}</li>)
         //   lista.push(
@@ -87,19 +44,11 @@ function Grid() {
         //     )
         //   )
         // ));
-        lista.push(docs.map((doc) => 
-          doc.map((item, index) => 
-            <li key={index}>
-              <h3>{item}</h3>
-            </li>
-          )
-        ))
 
         return lista;
       }
 
       return (
-        // <ul>{mapear(docs)}</ul>
         <Container>
           <Row>
             <Col className='col-4 colunaNovoDoc'>
@@ -109,10 +58,11 @@ function Grid() {
                 </Link>
                 </div>
             </Col>
-            <Col className='col-8'></Col>
+            <Col className='col-8'>
+            <ul>{mapear()}</ul>
+            </Col>
           </Row>
         </Container>
-        
       );
 }
 
