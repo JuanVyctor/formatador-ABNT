@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import newDocument from "../newDocument.png";
+import newDocument from "../newDocOficial.png";
 import imagem from "../imagem.jpg";
 import "../css/Dashboard.css";
 import api from "../services/api";
+import Container from 'react-bootstrap/esm/Container';
+import { Link } from "react-router-dom";
 
 function List(id) {
   // export default function List(id) {
@@ -89,7 +91,20 @@ function Grid() {
       }
 
       return (
-        <ul>{mapear(docs)}</ul>
+        // <ul>{mapear(docs)}</ul>
+        <Container>
+          <Row>
+            <Col className='col-4 colunaNovoDoc'>
+              <div className='novoDoc'>
+                <Link to="/">
+                  <img className='imagemNovoDoc' src={newDocument}/>
+                </Link>
+                </div>
+            </Col>
+            <Col className='col-8'></Col>
+          </Row>
+        </Container>
+        
       );
 }
 
