@@ -7,8 +7,8 @@ use App\Models\Documento;
 
 class DocumentoController extends Controller
 {
-    public function index(int $docId) {
-        $documentos = Documento::where('usu_id', '=', $docId)->get();
+    public function index() {
+        $documentos = Documento::where('usu_id', auth()->id())->get();
         return $documentos;
     }
 

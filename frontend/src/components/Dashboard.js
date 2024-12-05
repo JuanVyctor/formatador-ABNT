@@ -60,7 +60,7 @@ function Grid() {
   const id = 4;
   
       useEffect(() => {
-        api.get(`/usuarios/${id}/documentos`, {
+        api.get(`/usuarios/documentos`, {
               headers: { Authorization: `Bearer ${token}` },
             })
           .then((response) => {

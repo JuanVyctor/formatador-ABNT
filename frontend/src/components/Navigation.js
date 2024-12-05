@@ -1,11 +1,12 @@
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import Form from 'react-bootstrap/Form';
-import '../css/Navigation.css';
-import logo from '../logo.svg';
-import { FaSearch } from 'react-icons/fa';
+import { useState } from "react";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
+import Form from "react-bootstrap/Form";
+import "../css/Navigation.css";
+import logo from "../logo.svg";
+import { FaSearch } from "react-icons/fa";
 import { FaCircleUser } from "react-icons/fa6";
-import Dropdown from 'react-bootstrap/Dropdown';
+import Dropdown from "react-bootstrap/Dropdown";
 import { Link, useNavigate } from "react-router-dom";
 import api from '../services/api';
 import { useState } from 'react';
@@ -13,9 +14,11 @@ import { useState } from 'react';
 const Navigation = () => {
   const [token] = useState(localStorage.getItem('token'));
   const navigate = useNavigate();
-  function handleLogout(id) {
-    api.post('/logout', id);
-    navigate('/');
+  function handleLogout() {
+    api.post("/logout", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    navigate("/");
   }
 
   function dropdown(id) {
@@ -91,6 +94,6 @@ const Navigation = () => {
       </Container>
     </Navbar>
   );
-}
+};
 
 export default Navigation;
