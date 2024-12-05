@@ -7,7 +7,7 @@ import imagem from "../imagem.jpg";
 import "../css/Dashboard.css";
 import api from "../services/api";
 
-function List(id) {
+function List() {
   // export default function List(id) {
   //   const documentosUser = documentos.filter(user =>
   //     person.id === 'id'
@@ -57,33 +57,41 @@ function List(id) {
 function Grid() {
   const [token] = useState(localStorage.getItem('token'));
   const [docs, setDocs] = useState([]);
-  const id = 4;
+  const id = 5;
   
       useEffect(() => {
-        api.get(`/usuarios/documentos`, {
+        api.get(`/usuarios/${id}/documentos`
+          , {
               headers: { Authorization: `Bearer ${token}` },
-            })
+            }
+          )
           .then((response) => {
             setDocs(response.data);
           })
           .catch((err) => {
             console.error("Ops! Ocorreu um erro: " + err);
           });
-      }, [id, token]);
+      }, [token]);
 
-      function mapear(docs) {
+      function mapear() {
         const lista = [];
-
-        console.log(docs)
-        docs?.forEach(doc => (
-          lista.push(
-            doc.map((item, index) =>
+        // docs.forEach(doc => (
+        //   // lista.push(<li>{doc?.texto}</li>)
+        //   lista.push(
+        //     doc.map((item, index) =>
+        //       <li key={index}>
+        //         <h3>{item.texto}</h3>
+        //       </li>
+        //     )
+        //   )
+        // ));
+        lista.push(docs.map((doc) => 
+          doc.map((item, index) => 
             <li key={index}>
-                <h3>{item.texto}</h3>
-              </li>
-            )
+              <h3>{item}</h3>
+            </li>
           )
-        ));
+        ))
 
         return lista;
       }
