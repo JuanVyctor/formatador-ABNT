@@ -14,6 +14,8 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
 
+use function PHPUnit\Framework\isNull;
+
 class UserController extends Controller
 {
     public function index() {
@@ -27,13 +29,13 @@ class UserController extends Controller
         $email = $request->input('email');
         $senha = $request->input('senha');
 
-        $u = User::create(['nome' => $nome, 'email' => $email, 'senha' => bcrypt($senha)]);
-        $u->save();
+        $user = User::create(['nome' => $nome, 'email' => $email, 'senha' => bcrypt($senha)]);
+        $user->save();
 
-        $token = JWTAuth::fromUser($u);
+        $token = JWTAuth::fromUser($user);
 
         return response(
-            ['location' => ('usuarios/'. $u->id), 'token' => $token], 201
+            ['location' => ('usuarios/'. $user->id), 'token' => $token], 201
         );
     }
 
@@ -52,8 +54,11 @@ class UserController extends Controller
         return response()->json(compact('token'));
     }
 
-    public function show(int $id) {
-        $usuario = User::find($id);
+    public function show(int $id = null) {
+        if (!isNull($id))
+            $usuario = User::find($id);
+        else
+            $usuario = User::find(auth()->id());
 
         if (!$usuario)
             return response(status: 404);
@@ -62,7 +67,11 @@ class UserController extends Controller
     }
 
     public function update(Request $request, int $id) {
-        $usuario = User::find($id);
+        if (!isNull($id))
+            $usuario = User::find($id);
+        else
+            $usuario = User::find(auth()->id());
+
         $nome = $request->input('nome');
         $email = $request->input('email');
         $senha = $request->input('senha');
@@ -80,12 +89,18 @@ class UserController extends Controller
     }
 
     public function destroy (int $id) {
-        $documentos = Documento::where('usu_id', $id)->get();
+        if (!isNull($id))
+            $documentos = Documento::where('usu_id', $id)->get();
+        else
+            $documentos = Documento::where('usu_id', auth()->id())->get();
 
         foreach($documentos as $documento) 
             $documento->delete();
 
-        $usuario = User::find($id);
+        if (!isNull($id))
+            $usuario = User::find($id);
+        else
+            $usuario = User::find(auth()->id());
         
         if (!$usuario)
             return response(status: 404);

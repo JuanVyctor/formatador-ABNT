@@ -15,7 +15,6 @@ function FormFloatingCustom() {
   .then((response) => {
     alert('Usuário criado com sucesso.');
     localStorage.setItem('token', response.data.token);
-    localStorage.setItem('usu_id', data.usu_id);
     navigate(`/meus_documentos`);
   }).catch((error) => {
     alert('Ocorreu um erro inesperado: ' + error.message);

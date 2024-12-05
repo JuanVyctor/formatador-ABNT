@@ -147,13 +147,7 @@ paths:
         404:
           description: Usuário não encontrado  
           
-  /usuarios/{id}/documentos:
-    parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
+  /usuarios/documentos:
     get:
       summary: Lista de documentos de um usuário
       responses:
@@ -162,14 +156,9 @@ paths:
         404:
           description: Página não encontrada
 
-  /usuarios/{idUser}/documentos/{idDoc}:
+  /usuarios/documentos/{id}:
     parameters:
-      - name: idUser
-        in: path
-        required: true
-        schema:
-          type: integer
-      - name: idDoc
+      - name: id
         in: path
         required: true
         schema:
@@ -212,8 +201,13 @@ paths:
         400:
           description: Requisição inválida
 
-  /documentos:
-
+  /documentos/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
     put:
       summary: Altera um documento
       requestBody:
@@ -226,9 +220,6 @@ paths:
                 texto:
                   type: string
                   description: Texto a ser alterado
-                convidados:
-                  type: integer
-                  description: Usuários com permissão de editar o documento
       responses:
         200:
           description: OK
@@ -241,4 +232,4 @@ paths:
         200:
           description: Ok
         404:
-          description: Documento não encontrado   
+          description: Documento não encontrado

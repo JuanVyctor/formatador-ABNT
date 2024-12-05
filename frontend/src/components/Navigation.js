@@ -1,21 +1,23 @@
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import Form from 'react-bootstrap/Form';
-import '../css/Navigation.css';
-import logo from '../logo.svg';
-import { FaSearch } from 'react-icons/fa';
+import { useState } from "react";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
+import Form from "react-bootstrap/Form";
+import "../css/Navigation.css";
+import logo from "../logo.svg";
+import { FaSearch } from "react-icons/fa";
 import { FaCircleUser } from "react-icons/fa6";
-import Dropdown from 'react-bootstrap/Dropdown';
+import Dropdown from "react-bootstrap/Dropdown";
 import { Link, useNavigate } from "react-router-dom";
-import api from '../services/api';
-
+import api from "../services/api";
 
 const Navigation = () => {
-
+  const [token] = useState(localStorage.getItem("token"));
   const navigate = useNavigate();
-  function handleLogout(id) {
-    api.post('/logout', id);
-    navigate('/');
+  function handleLogout() {
+    api.post("/logout", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    navigate("/");
   }
   // const estaLogado = true;
   // const conta = ({}) => {
@@ -36,7 +38,7 @@ const Navigation = () => {
   //       </Dropdown>
   //     );
   //   } else {
-  //     return 
+  //     return
   //       <Link to="/login" className="about">
   //         <span className="about-us-text me-2">Login</span>
   //       </Link>;
@@ -78,19 +80,19 @@ const Navigation = () => {
               <FaCircleUser className="profile-icon" />
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Link to={`/login/${1}`} className='dropLink'>
+              <Link to={`/login/${1}`} className="dropLink">
                 <Dropdown.Item>Minha Conta</Dropdown.Item>
               </Link>
-              <Link to="/meus_documentos" className='dropLink'>
+              <Link to="/meus_documentos" className="dropLink">
                 <Dropdown.Item>Meus Documentos</Dropdown.Item>
               </Link>
-                <Dropdown.Item onClick={handleLogout}>Sair</Dropdown.Item>
+              <Dropdown.Item onClick={handleLogout}>Sair</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </div>
       </Container>
     </Navbar>
   );
-}
+};
 
 export default Navigation;

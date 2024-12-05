@@ -59,10 +59,11 @@ function List(id) {
 }
 
 function Grid() {
+  const [token] = useState(localStorage.getItem('token'));
   const [docs, setDocs] = useState([]);
   const id = 4;
       useEffect(() => {
-        api.get(`/usuarios/${id}/documentos`, {
+        api.get(`/usuarios/documentos`, {
               headers: { Authorization: `Bearer ${token}` },
             })
           .then((response) => {
