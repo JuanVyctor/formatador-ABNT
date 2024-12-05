@@ -15,8 +15,8 @@ function FormFloatingCustom() {
     alert('O procedimento deu certo');
     localStorage.setItem('token', response.data.token);
     navigate(`/meus_documentos`);
-  }).catch(() => {
-    alert('O procedimento deu errado');
+  }).catch((error) => {
+    alert('Ocorreu um erro inesperado: ' + error.message);
   });
 
   return (

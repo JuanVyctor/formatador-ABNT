@@ -13,12 +13,12 @@ function FormFloatingCustom() {
   const handleAddUser = data =>
   api.post("/signup", data)
   .then((response) => {
-    alert('O procedimento deu certo');
+    alert('Usuário criado com sucesso.');
     localStorage.setItem('token', response.data.token);
+    localStorage.setItem('usu_id', data.usu_id);
     navigate(`/meus_documentos`);
   }).catch((error) => {
-    console.log(data)
-    alert('O procedimento deu errado: ' + error.message);
+    alert('Ocorreu um erro inesperado: ' + error.message);
   });
 
   return (

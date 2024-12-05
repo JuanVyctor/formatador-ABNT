@@ -15,19 +15,22 @@ function FormFloatingCustom(id) {
   let nome = user?.nome;
   let email = user?.email;
 
-  api.get(`/usuarios/${id}`)
-  .then((response) => setUser(response.data))
-  .catch((err) => {
-    console.error("ops! ocorreu um erro" + err);
-  });
+  api
+    .get(`/usuarios/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((response) => setUser(response.data))
+    .catch((err) => {
+      console.error("ops! ocorreu um erro" + err);
+    });
 
   const handlePutUser = data =>
     api.put(`/usuarios/${id}`, data)
     .then(() => {
       alert('O procedimento deu certo');
       navigate(`/perfil/${id}`);
-    }).catch(() => {
-      alert('O procedimento deu errado');
+    }).catch((error) => {
+      alert('Ocorreu um erro inesperado: ' + error.message);
       navigate(`/perfil/${id}`);
     });
 
