@@ -13,6 +13,8 @@ function FormFloatingCustom() {
   const navigate = useNavigate();
 
   const [token] = useState(localStorage.getItem('token'));
+  let nome = user?.nome;
+  let email = user?.email;
 
   api
     .get(`/usuarios`, {
@@ -25,9 +27,6 @@ function FormFloatingCustom() {
     .catch((err) => {
       console.error("ops! ocorreu um erro" + err);
     });
-
-  let nome = user?.nome;
-  let email = user?.email;
 
   const handlePutUser = data =>
     api.put(`/usuarios`, data)

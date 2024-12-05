@@ -20,10 +20,6 @@ function List(id) {
   //   return <ul>{todosDocumentos}</ul>;
   // }
   
-  
-  
-  
-  
   //const [docs, setDocs] = useState();
   // useEffect(() => {
   //   api
@@ -62,6 +58,7 @@ function Grid() {
   const [token] = useState(localStorage.getItem('token'));
   const [docs, setDocs] = useState([]);
   const id = 4;
+  
       useEffect(() => {
         api.get(`/usuarios/documentos`, {
               headers: { Authorization: `Bearer ${token}` },
@@ -78,22 +75,21 @@ function Grid() {
         const lista = [];
 
         console.log(docs)
-        // docs?.forEach(doc? => (
-        //   lista.push(
-        //     doc.map((item, index) =>
-        //     <li key={index}>
-        //         <h3>{item.texto}</h3>
-        //       </li>
-        //     )
-        //   )
-        // ));
+        docs?.forEach(doc => (
+          lista.push(
+            doc.map((item, index) =>
+            <li key={index}>
+                <h3>{item.texto}</h3>
+              </li>
+            )
+          )
+        ));
 
         return lista;
       }
 
       return (
-        <div>{mapear(docs)}</div>
-        // <ul></ul>
+        <ul>{mapear(docs)}</ul>
       );
 }
 
