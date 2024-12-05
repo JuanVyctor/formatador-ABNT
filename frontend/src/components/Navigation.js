@@ -29,16 +29,18 @@ const Navigation = () => {
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item>
-              <Link to={`/perfil/${id}`} className='dropLink'>
+              <Link to={`/perfil/${id}`} className="dropLink">
                 Minha Conta
               </Link>
             </Dropdown.Item>
             <Dropdown.Item>
-              <Link to="/meus_documentos" className='dropLink'>
-              Meus Documentos
+              <Link to="/meus_documentos" className="dropLink">
+                Meus Documentos
               </Link>
             </Dropdown.Item>
-            <Dropdown.Item onClick={handleLogout}>Sair</Dropdown.Item>
+            <Dropdown.Item>
+              <Link onClick={handleLogout} className="dropLink">Sair</Link>
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       );
