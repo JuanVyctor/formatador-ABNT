@@ -68,8 +68,8 @@ const UpdateDoc = (id) => {
     api.put(`/documentos/${id}`, data)
     .then(() => {
       alert('O procedimento deu certo');
-    }).catch(() => {
-      alert('O procedimento deu errado');
+    }).catch((error) => {
+      alert('Ocorreu um erro inesperado: ' + error.message);
     });
 
   return (

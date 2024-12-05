@@ -59,24 +59,26 @@ function List(id) {
 }
 
 function Grid() {
+  const [token] = useState(localStorage.getItem('token'));
   const [docs, setDocs] = useState([]);
   const id = 4;
       useEffect(() => {
-        api
-          .get(`/usuarios/${id}/documentos`)
+        api.get(`/usuarios/documentos`, {
+              headers: { Authorization: `Bearer ${token}` },
+            })
           .then((response) => {
             setDocs(response.data);
           })
           .catch((err) => {
             console.error("Ops! Ocorreu um erro: " + err);
           });
-      }, [id]);
+      }, [id, token]);
 
       function mapear(docs) {
         const lista = [];
 
         console.log(docs)
-        // docs.forEach(doc => (
+        // docs?.forEach(doc? => (
         //   lista.push(
         //     doc.map((item, index) =>
         //     <li key={index}>

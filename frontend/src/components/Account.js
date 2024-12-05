@@ -7,39 +7,47 @@ import { useForm } from 'react-hook-form';
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
 
-function FormFloatingCustom(id) {
+function FormFloatingCustom() {
   const [user, setUser] = useState();
   const { register, handleSubmit, setValue } = useForm();
   const navigate = useNavigate();
 
+  const [token] = useState(localStorage.getItem('token'));
+
+  api
+    .get(`/usuarios`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((response) => {
+      console.log(token);
+      setUser(response.data);
+    })
+    .catch((err) => {
+      console.error("ops! ocorreu um erro" + err);
+    });
+
   let nome = user?.nome;
   let email = user?.email;
 
-  api.get(`/usuarios/${id}`)
-  .then((response) => setUser(response.data))
-  .catch((err) => {
-    console.error("ops! ocorreu um erro" + err);
-  });
-
   const handlePutUser = data =>
-    api.put(`/usuarios/${id}`, data)
+    api.put(`/usuarios`, data)
     .then(() => {
       alert('O procedimento deu certo');
-      navigate(`/perfil/${id}`);
-    }).catch(() => {
-      alert('O procedimento deu errado');
-      navigate(`/perfil/${id}`);
+      navigate(`/perfil`);
+    }).catch((error) => {
+      alert('Ocorreu um erro inesperado: ' + error.message);
+      navigate(`/perfil`);
     });
 
   function handleDeleteUser() {
     if (window.confirm('Tem certeza que deseja apagar sua conta?') == true) {
-      api.delete(`/usuarios/${id}`)
+      api.delete(`/usuarios`)
       .then(() => {
         alert('Conta deletada com sucesso.');
         navigate(`/`);
       }).catch(() => {
         alert('Ocorreu um erro inesperado.');
-        navigate(`/perfil/${id}`);
+        navigate(`/perfil`);
       });
     }
   }
