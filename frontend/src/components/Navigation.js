@@ -1,10 +1,8 @@
 import { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
-import Form from "react-bootstrap/Form";
 import "../css/Navigation.css";
 import logo from "../logo.svg";
-import { FaSearch } from "react-icons/fa";
 import { FaCircleUser } from "react-icons/fa6";
 import Dropdown from "react-bootstrap/Dropdown";
 import { Link, useNavigate } from "react-router-dom";
@@ -20,8 +18,8 @@ const Navigation = () => {
     })
     .then((response) => {
       console.log(response)
-      // alert('Você saiu :)');
-      // navigate("/");
+      alert('Você saiu :)');
+      navigate("/");
     }
     ).catch((error) => {
       alert(`Ocorreu um erro inesperado: ${error.message}`);
@@ -54,18 +52,11 @@ const Navigation = () => {
       );
     } else {
       return (
-        <Dropdown>
-          <Dropdown.Toggle className="dropButton" id="dropdown-basic">
-            <FaCircleUser className="profile-icon" />
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-              <Dropdown.Item>
-                <Link to="/login" className='dropLink'>
-                  Entrar
-                </Link>
-              </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        <Link to="/login" className='about-us-text about entrar'>
+          <div>
+            Entrar
+          </div>
+        </Link>
       ); 
     }
   }
@@ -74,7 +65,7 @@ const Navigation = () => {
     <Navbar className="custom-nav">
       <Container className="d-flex justify-content-between align-items-center">
         <Navbar.Brand>
-          <Link to="/">
+          <Link to={token ? "meus_documentos" : "/"}>
             <img
               alt="Logo"
               src={logo}
@@ -84,16 +75,7 @@ const Navigation = () => {
             />
           </Link>
         </Navbar.Brand>
-        <Form className="d-flex justify-content-center flex-grow-0 mx-4">
-          <div className="position-relative search-container">
-            <input
-              type="text"
-              placeholder="Pesquisar..."
-              className="search-input form-control"
-            />
-            <FaSearch className="search-icon" />
-          </div>
-        </Form>
+        <div className="ABNT">Formatador ABNT</div>
         <div className="d-flex align-items-center">
           <Link to="/sobre_nos" className="about">
             <span className="about-us-text me-2">Sobre nós</span>

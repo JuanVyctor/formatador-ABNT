@@ -79,6 +79,8 @@ paths:
   /logout:
     post:
       summary: Desloga o usuário em questão
+      security:
+        - bearer: []
       responses:
         200:
           description: Usuário deslogado com sucesso
@@ -98,6 +100,25 @@ paths:
         500:
           description: Erro interno no servidor
 
+  /id:
+    get:
+      summary: Retorna o ID do usuário logado
+      security:
+        - bearer: []
+      responses:
+        200:
+          description: Usuário encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                    description: o ID do Usuario logado
+        404:
+          description: Usuario não encontrado
+
   /usuarios/{id}:
     parameters:
       - name: id
@@ -107,6 +128,8 @@ paths:
           type: integer
     get: 
       summary: Acessa um usuario
+      security:
+        - bearer: []
       responses:
         200:
           description: Ok
@@ -118,6 +141,8 @@ paths:
           description: Usuário não encontrado
     put: 
       summary: Atualiza um usuario
+      security:
+        - bearer: []
       requestBody:
         required: true
         content:
@@ -141,20 +166,13 @@ paths:
           description: Documento não encontrado
     delete:
       summary: Apaga um usuário
+      security:
+        - bearer: []
       responses:
         200:
           description: Ok
         404:
           description: Usuário não encontrado  
-          
-  /usuarios/documentos:
-    get:
-      summary: Lista de documentos de um usuário
-      responses:
-        200:
-          description: OK
-        404:
-          description: Página não encontrada
           
   /usuarios/{id}/documentos:
     parameters:
@@ -165,60 +183,19 @@ paths:
           type: integer
     get:
       summary: Lista de documentos de um usuário
+      security:
+        - bearer: []
       responses:
         200:
           description: OK
         404:
           description: Página não encontrada
 
-  /usuarios/documentos/{id}:
-    parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-    get: 
-      summary: Acessa um documento
-      responses:
-        200:
-          description: Ok
-          content:
-            application/json:
-              schema:
-                type: object
-    post:
-      summary: Cria um novo documento formatado
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                texto:
-                  type: string
-                  description: Texto a ser formatado
-                usu_id:
-                  type: integer
-                  description: Usuário dono do documento
-      responses:
-        201:
-          description: Documento criado
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  location:
-                    type: string
-                    description: o URI do novo Documento
-        400:
-          description: Requisição inválida
-
   /documentos:
     post:
       summary: Cria um novo documento
+      security:
+        - bearer: []
       requestBody:
         required: true
         content:
@@ -253,6 +230,8 @@ paths:
           type: integer
     put:
       summary: Altera um documento
+      security:
+        - bearer: []
       requestBody:
         required: true
         content:
@@ -271,8 +250,17 @@ paths:
     
     delete:
       summary: Apaga um documento
+      security:
+        - bearer: []
       responses:
         200:
           description: Ok
         404:
           description: Documento não encontrado
+
+components:
+  securitySchemes:
+    bearer: 
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

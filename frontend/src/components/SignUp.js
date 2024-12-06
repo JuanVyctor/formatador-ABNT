@@ -10,6 +10,7 @@ function FormFloatingCustom() {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   
+  // const handleAddUser = data => console.log(data)
   const handleAddUser = data =>
   api.post("/signup", data)
   .then((response) => {

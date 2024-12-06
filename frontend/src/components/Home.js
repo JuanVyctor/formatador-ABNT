@@ -15,6 +15,20 @@ const Home = () => {
   const { register, handleSubmit, setValue } = useForm();
   const navigate = useNavigate();
   const editorRef = useRef(null);
+
+  useEffect(() => {
+    if (token) {
+      api.get("/id"
+      , {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+      .then((response) => {
+        setValue("usu_id", response.data)
+      }).catch((error) => {
+        console.log('Ocorreu um erro inesperado: ' + error.message);
+      });
+    }
+  })
   
   function formataTexto(texto) {
     return `<p style="text-align: justify; line-height: 1.5; text-indent: 1.25em; font-family: Arial, Times New Roman, serif; color: black; font-size: 12;">${texto}</p>`;
@@ -57,11 +71,15 @@ const Home = () => {
       alert("Não é possível salvar um documento sem estar logado.");
       navigate("/login");
     } else {
-      api.post("/documentos", data)
+      api.post("/documentos", data
+      , {
+          headers: { Authorization: `Bearer ${token}` },
+        })
       .then(() => {
         alert('Documento criado com êxito.');
         navigate(`/meus_documentos`);
       }).catch((error) => {
+        console.log(error.response.data)
         alert('Ocorreu um erro inesperado: ' + error.message);
       });
     }
@@ -73,27 +91,26 @@ const Home = () => {
         <textarea className="textoSimples" placeholder="Coloque aqui o texto não formatado..." onChange={handleTexto} />
       </div>
       <form className="summer" onSubmit={handleSubmit(addDoc)}>
-          <Card className="p-4 custom-card">
-            <div className="text-center bg-danger" ref={editorRef} />
-          </Card>
-          <input
-            type="hidden"
-            name="texto"
-            {...register("texto")}
-          ></input>
-          <input
-            type="hidden"
-            value="2"
-            name="usu_id"
-            {...register("usu_id")}
-          ></input>
-          <Button
-            variant="light"
-            className="mt-4 custom-button"
-            type="submit"
-          >
-            Formatar
-          </Button>
+        <Card className="p-4 custom-card">
+          <div className="text-center bg-danger" ref={editorRef} />
+        </Card>
+        <input
+          type="hidden"
+          name="texto"
+          {...register("texto")}
+        ></input>
+        <input
+          type="hidden"
+          name="usu_id"
+          {...register("usu_id")}
+        ></input>
+        <Button
+          variant="light"
+          className="mt-4 custom-button"
+          type="submit"
+        >
+          Formatar
+        </Button>
       </form>
     </Container>
   );

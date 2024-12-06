@@ -23,6 +23,11 @@ class UserController extends Controller
         return $usuarios;
     }
 
+    public function id() {
+        $usuarios = User::find(auth()->id());
+        return $usuarios->id;
+    }
+
     public function store(Request $request) {
 
         $nome = $request->input('nome');
