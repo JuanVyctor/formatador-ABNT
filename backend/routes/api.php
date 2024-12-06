@@ -25,7 +25,7 @@ Route::post('/login', [UserController::class, 'login'])->name('login');
 
 Route::group(['middleware' => 'jwt.verify'],function () {
     Route::get('/id', [UserController::class, 'id'])->name('id');
-    Route::post('logout', 'UserController@logout')->name('user.logout');
+    Route::post('logout', [UserController::class,'logout'])->name('users.logout');
 
     Route::prefix('/usuarios')->name('usuarios.')->group(function () {
         Route::get('/{id}',[UserController::class, 'show'])->name('perfil');

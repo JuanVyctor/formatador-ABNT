@@ -12,20 +12,32 @@ const Navigation = () => {
   const [token] = useState(localStorage.getItem('token'));
   const navigate = useNavigate();
   
+  // Função de logout
   function handleLogout() {
-    api.post("/logout", {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    .then((response) => {
-      console.log(response)
-      alert('Você saiu :)');
-      navigate("/");
-    }
-    ).catch((error) => {
-      alert(`Ocorreu um erro inesperado: ${error.message}`);
-    });
+    api
+      .post(
+        "/logout", 
+        {}, 
+        {
+          headers: { Authorization: `Bearer ${token}` }, 
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        alert("Você saiu com sucesso!");
+        // Remover o token após a resposta bem-sucedida
+        localStorage.removeItem("token");
+    
+        // Redirecionar para a página inicial
+        navigate("/"); // Ou para qualquer outra página que você preferir
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Erro ao tentar deslogar.");
+      });
   }
 
+  // Função do dropdown
   function dropdown() {
     if (token !== null) {
       return (
@@ -65,7 +77,7 @@ const Navigation = () => {
     <Navbar className="custom-nav">
       <Container className="d-flex justify-content-between align-items-center">
         <Navbar.Brand>
-          <Link to={token ? "meus_documentos" : "/"}>
+          <Link to={token ? "meus_documentos" : "/"} >
             <img
               alt="Logo"
               src={logo}
