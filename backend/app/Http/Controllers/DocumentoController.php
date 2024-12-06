@@ -12,11 +12,6 @@ class DocumentoController extends Controller
         return $documentos;
     }
 
-    public function indexid(int $id) {
-        $documentos = Documento::where('usu_id', $id)->get();
-        return $documentos;
-    }
-
     public function store(Request $request) {
         $texto = $request->input('texto');
         $usuario = $request->input('usu_id');
