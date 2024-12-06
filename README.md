@@ -6,11 +6,6 @@ https://www.figma.com/board/qJJc3S2goTrJyoWcXUdPpI/Gerenciamento-de-Front-End-?n
 https://www.figma.com/design/K7RT37zGQ4ynUUa1FHuf2D/Baixa-Fidelidade?node-id=0-1&node-type=canvas&t=wGRd1k49FlxwiAjq-0
 
 ## COISAS A FAZER NO FRONT
-- Ver problema do map() com a ajuda de Iuri
-- Tela de dashboard: listagem de documentos (esforço coletivo)
 
 ## COISAS A FAZER NO BACK
-- Coleta de dados do usuário autenticado (Juan e Maria)
-- Problemas e afins dos tokens e suas rotas (Juan e Maria)
-- Update de usuários (pausa por bugs)
 - Logout de Usuário (Maria)

@@ -35,11 +35,8 @@ Route::group(['middleware' => 'jwt.verify'],function () {
     
     Route::get('/usuarios/{id}/documentos', [DocumentoController::class,'index'])->name('');
 
-    Route::prefix('/documentos')->name('documento.')->group(function() {
-        Route::get('', [DocumentoController::class, 'index'])->name('index');
-        Route::post('', [DocumentoController::class, 'store'])->name('store');
-    });
-    
+    Route::post('/documentos', [DocumentoController::class, 'store'])->name('store');
+
     Route::prefix('/usuarios/documentos')->name('usuarios.documento.')->group(function () {
         Route::get('/{id}', [DocumentoController::class, 'show'])->name('show');
         Route::put('/{id}', [DocumentoController::class, 'update'])->name('update');
