@@ -12,7 +12,7 @@ function FormFloatingCustom() {
   
   const getUser = data => api.post("/login", data)
   .then((response) => {
-    alert('O procedimento deu certo');
+    alert('Login realizado com sucesso!');
     localStorage.setItem('token', response.data.token);
     navigate(`/meus_documentos`);
   }).catch((error) => {

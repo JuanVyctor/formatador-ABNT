@@ -10,11 +10,26 @@ import "../css/Home.css";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const [id, setId] = useState();
   const [token] = useState(localStorage.getItem('token'));
   const [texto, setTexto] = useState('');
   const { register, handleSubmit, setValue } = useForm();
   const navigate = useNavigate();
   const editorRef = useRef(null);
+
+  useEffect(() => {
+    if (token) {
+      api.get("/id"
+      , {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+      .then((response) => {
+        setId(response.data)
+      }).catch((error) => {
+        console.log('Ocorreu um erro inesperado: ' + error.message);
+      });
+    }
+  })
   
   function formataTexto(texto) {
     return `<p style="text-align: justify; line-height: 1.5; text-indent: 1.25em; font-family: Arial, Times New Roman, serif; color: black; font-size: 12;">${texto}</p>`;
@@ -57,13 +72,17 @@ const Home = () => {
       alert("Não é possível salvar um documento sem estar logado.");
       navigate("/login");
     } else {
-      api.post("/documentos", data)
-      .then(() => {
-        alert('Documento criado com êxito.');
-        navigate(`/meus_documentos`);
-      }).catch((error) => {
-        alert('Ocorreu um erro inesperado: ' + error.message);
-      });
+      console.log(data)
+      // api.post("/documentos", data)
+      // , {
+      //     headers: { Authorization: `Bearer ${token}` },
+      //   }
+      // .then(() => {
+      //   alert('Documento criado com êxito.');
+      //   navigate(`/meus_documentos`);
+      // }).catch((error) => {
+      //   alert('Ocorreu um erro inesperado: ' + error.message);
+      // });
     }
   }
 
@@ -83,7 +102,7 @@ const Home = () => {
           ></input>
           <input
             type="hidden"
-            value="2"
+            value={id}
             name="usu_id"
             {...register("usu_id")}
           ></input>
