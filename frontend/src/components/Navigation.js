@@ -13,15 +13,23 @@ import api from '../services/api';
 const Navigation = () => {
   const [token] = useState(localStorage.getItem('token'));
   const navigate = useNavigate();
+  
   function handleLogout() {
     api.post("/logout", {
       headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((response) => {
+      console.log(response)
+      // alert('Você saiu :)');
+      // navigate("/");
+    }
+    ).catch((error) => {
+      alert(`Ocorreu um erro inesperado: ${error.message}`);
     });
-    navigate("/");
   }
 
-  function dropdown(id) {
-    if (token != null) {
+  function dropdown() {
+    if (token !== null) {
       return (
         <Dropdown>
           <Dropdown.Toggle className="dropButton" id="dropdown-basic">
@@ -29,7 +37,7 @@ const Navigation = () => {
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item>
-              <Link to={`/perfil/${id}`} className="dropLink">
+              <Link to={`/perfil`} className="dropLink">
                 Minha Conta
               </Link>
             </Dropdown.Item>

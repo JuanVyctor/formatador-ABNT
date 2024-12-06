@@ -83,7 +83,7 @@ const Home = () => {
           ></input>
           <input
             type="hidden"
-            value="5"
+            value="2"
             name="usu_id"
             {...register("usu_id")}
           ></input>
