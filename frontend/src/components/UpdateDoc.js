@@ -111,7 +111,6 @@ const UpdateDoc = () => {
   return (
     <Container className="mt-5 text-center conteudo">
       <form className="summer" onSubmit={handleSubmit(putDoc)}>
-          <input type="text" placeholder="Insira aqui o título do seu documento" name="titulo" {...register("titulo")}></input>
           <Card className="p-4 custom-card">
             <div ref={editorRef} />
           </Card>

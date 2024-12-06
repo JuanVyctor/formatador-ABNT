@@ -42,7 +42,7 @@ function Documentos() {
         <Link className='textos' to={`/editar_documento/${doc.id}`}>
           <li>
             <Card className='lista'>
-              Documento {index+1}: {doc.titutlo}
+              Documento {index+1}: {doc.texto}
             </Card>
           </li>
         </Link>

@@ -203,9 +203,6 @@ paths:
             schema:
               type: object
               properties:
-                titulo:
-                  type: string
-                  description: Titulo do documento
                 texto:
                   type: string
                   description: Texto do documento
@@ -242,9 +239,6 @@ paths:
             schema:
               type: object
               properties:
-                titulo:
-                  type: string
-                  description: Titulo do documento
                 texto:
                   type: string
                   description: Texto a ser alterado

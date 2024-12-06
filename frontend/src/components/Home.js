@@ -91,7 +91,6 @@ const Home = () => {
         <textarea className="textoSimples" placeholder="Coloque aqui o texto não formatado..." onChange={handleTexto} />
       </div>
       <form className="summer" onSubmit={handleSubmit(addDoc)}>
-      <input type="text" placeholder="Insira aqui o título do seu documento" name="titulo" {...register("titulo")}></input>
         <Card className="p-4 custom-card">
           <div className="text-center bg-danger" ref={editorRef} />
         </Card>
