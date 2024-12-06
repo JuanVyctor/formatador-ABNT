@@ -8,55 +8,73 @@ import api from "../services/api";
 import { useNavigate } from "react-router-dom";
 
 function FormFloatingCustom() {
-  const id = 2;
+  const [id, setId] = useState();
   const [user, setUser] = useState();
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const [token] = useState(localStorage.getItem('token'));
 
-  // useEffect(() => {
-  //   api.get(`/usuarios/${id}`, {
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     })
-  //     .then((response) => {
-  //       setUser(response.data);
-  //       console.log(user)
-  //     })
-  //     .catch((err) => {
-  //       console.error("ops! ocorreu um erro" + err);
-  //     });
-  // });
+  useEffect(() => {
+    if (token) {
+      api.get("/id"
+      , {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+      .then((response) => {
+        setId(response.data)
+      }).catch((error) => {
+        console.log('Ocorreu um erro inesperado: ' + error.message);
+      });
+    }
+  }, []);
 
-  // const handlePutUser = data => console.log(data)
-  //   api.put(`/usuarios/${id}`, data)
-  //   .then(() => {
-  //     alert('Dados alterados com sucesso.');
-  //     navigate(`/perfil`);
-  //     console.log(data)
-  //   }).catch((error) => {
-  //     alert('Ocorreu um erro inesperado: ' + error.message);
-  //   });
+  useEffect(() => {
+    api.get(`/usuarios/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        setUser(response.data);
+      })
+      .catch((err) => {
+        console.error("ops! ocorreu um erro" + err);
+      });
+  }, [id]);
 
-  // function handleDeleteUser() {
-  //   if (window.confirm('Tem certeza que deseja apagar sua conta?') == true) {
-  //     api.delete(`/usuarios`)
-  //     .then(() => {
-  //       alert('Conta deletada com sucesso.');
-  //       navigate(`/`);
-  //     }).catch(() => {
-  //       alert('Ocorreu um erro inesperado.');
-  //     });
-  //   }
-  // }
+  const handlePutUser = data =>
+    api.put(`/usuarios/${id}`, data, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then(() => {
+      console.log(data);
+      alert('Dados alterados com sucesso.');
+      navigate(`/perfil`);
+    }).catch((error) => {
+      alert('Ocorreu um erro inesperado: ' + error.message);
+    });
+
+  function handleDeleteUser() {
+    if (window.confirm('Tem certeza que deseja apagar sua conta?') == true) {
+      api.delete(`/usuarios/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        alert('Conta deletada com sucesso.');
+        navigate(`/`);
+      }).catch((error) => {
+        alert('Ocorreu um erro inesperado: ' + error.message);
+      });
+    }
+  }
   
   return (
   <div className="body">
     <div>
       <FaRegCircleUser className="UserIcon mb-4" />
     </div>
+    <div>Nome atual: {user?.nome}</div>
+    <div>Email atual: {user?.email}</div>
     <div className="formulario mt-4">
-      <form>
-      {/* <form onSubmit={handleSubmit(handleAddUser)}> */}
+      <form onSubmit={handleSubmit(handlePutUser)}>
         <Form.Floating className="mb-4">
           <Form.Control
               id="floatingNameCustom"
@@ -89,7 +107,10 @@ function FormFloatingCustom() {
         </Form.Floating>
         <div className="Buttons mb-3 d-flex justify-content-center">
           <Button className="Button" type="submit">
-            Criar Conta
+            Atualizar
+          </Button>
+          <Button className="Button" onClick={handleDeleteUser}>
+            Excluir
           </Button>
         </div>
       </form>

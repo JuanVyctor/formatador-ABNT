@@ -72,10 +72,7 @@ class UserController extends Controller
     }
 
     public function update(Request $request, int $id) {
-        if (!isNull($id))
-            $usuario = User::find($id);
-        else
-            $usuario = User::find(auth()->id());
+        $usuario = User::find($id);
 
         $nome = $request->input('nome');
         $email = $request->input('email');
@@ -91,21 +88,18 @@ class UserController extends Controller
             $usuario->senha = $senha;
 
         $usuario->save();
+        return response(
+            ['location' => ('usuarios/'. $usuario->id)], 201
+        );
     }
 
     public function destroy (int $id) {
-        if (!isNull($id))
-            $documentos = Documento::where('usu_id', $id)->get();
-        else
-            $documentos = Documento::where('usu_id', auth()->id())->get();
+        $documentos = Documento::where('usu_id', $id)->get();
 
         foreach($documentos as $documento) 
             $documento->delete();
 
-        if (!isNull($id))
-            $usuario = User::find($id);
-        else
-            $usuario = User::find(auth()->id());
+        $usuario = User::find($id);
         
         if (!$usuario)
             return response(status: 404);

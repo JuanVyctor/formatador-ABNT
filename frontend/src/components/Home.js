@@ -79,7 +79,7 @@ const Home = () => {
         alert('Documento criado com êxito.');
         navigate(`/meus_documentos`);
       }).catch((error) => {
-        console.log(error.response.data)
+        console.log(data)
         alert('Ocorreu um erro inesperado: ' + error.message);
       });
     }
