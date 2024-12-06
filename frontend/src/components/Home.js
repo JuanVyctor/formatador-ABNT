@@ -10,7 +10,6 @@ import "../css/Home.css";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const [id, setId] = useState();
   const [token] = useState(localStorage.getItem('token'));
   const [texto, setTexto] = useState('');
   const { register, handleSubmit, setValue } = useForm();
@@ -24,7 +23,7 @@ const Home = () => {
           headers: { Authorization: `Bearer ${token}` },
         })
       .then((response) => {
-        setId(response.data)
+        setValue("usu_id", response.data)
       }).catch((error) => {
         console.log('Ocorreu um erro inesperado: ' + error.message);
       });
@@ -72,17 +71,17 @@ const Home = () => {
       alert("Não é possível salvar um documento sem estar logado.");
       navigate("/login");
     } else {
-      console.log(data)
-      // api.post("/documentos", data)
-      // , {
-      //     headers: { Authorization: `Bearer ${token}` },
-      //   }
-      // .then(() => {
-      //   alert('Documento criado com êxito.');
-      //   navigate(`/meus_documentos`);
-      // }).catch((error) => {
-      //   alert('Ocorreu um erro inesperado: ' + error.message);
-      // });
+      api.post("/documentos", data
+      , {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+      .then(() => {
+        alert('Documento criado com êxito.');
+        navigate(`/meus_documentos`);
+      }).catch((error) => {
+        console.log(error.response.data)
+        alert('Ocorreu um erro inesperado: ' + error.message);
+      });
     }
   }
 
@@ -92,27 +91,27 @@ const Home = () => {
         <textarea className="textoSimples" placeholder="Coloque aqui o texto não formatado..." onChange={handleTexto} />
       </div>
       <form className="summer" onSubmit={handleSubmit(addDoc)}>
-          <Card className="p-4 custom-card">
-            <div className="text-center bg-danger" ref={editorRef} />
-          </Card>
-          <input
-            type="hidden"
-            name="texto"
-            {...register("texto")}
-          ></input>
-          <input
-            type="hidden"
-            value={id}
-            name="usu_id"
-            {...register("usu_id")}
-          ></input>
-          <Button
-            variant="light"
-            className="mt-4 custom-button"
-            type="submit"
-          >
-            Formatar
-          </Button>
+      <input type="text" placeholder="Insira aqui o título do seu documento" name="titulo" {...register("titulo")}></input>
+        <Card className="p-4 custom-card">
+          <div className="text-center bg-danger" ref={editorRef} />
+        </Card>
+        <input
+          type="hidden"
+          name="texto"
+          {...register("texto")}
+        ></input>
+        <input
+          type="hidden"
+          name="usu_id"
+          {...register("usu_id")}
+        ></input>
+        <Button
+          variant="light"
+          className="mt-4 custom-button"
+          type="submit"
+        >
+          Formatar
+        </Button>
       </form>
     </Container>
   );
