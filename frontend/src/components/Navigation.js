@@ -12,7 +12,6 @@ const Navigation = () => {
   const [token] = useState(localStorage.getItem('token'));
   const navigate = useNavigate();
   
-  // Função de logout
   function handleLogout() {
     api
       .post(
@@ -25,11 +24,8 @@ const Navigation = () => {
       .then((response) => {
         console.log(response);
         alert("Você saiu com sucesso!");
-        // Remover o token após a resposta bem-sucedida
         localStorage.removeItem("token");
-    
-        // Redirecionar para a página inicial
-        navigate("/"); // Ou para qualquer outra página que você preferir
+        navigate("/"); 
       })
       .catch((error) => {
         console.error(error);
@@ -37,7 +33,6 @@ const Navigation = () => {
       });
   }
 
-  // Função do dropdown
   function dropdown() {
     if (token !== null) {
       return (
