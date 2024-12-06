@@ -6,64 +6,68 @@ import "../css/Dashboard.css";
 import api from "../services/api";
 import Container from 'react-bootstrap/esm/Container';
 import { Link } from "react-router-dom";
+import Card from 'react-bootstrap/Card';
 
-function Grid() {
+function Documentos() {
   const [token] = useState(localStorage.getItem('token'));
   const [docs, setDocs] = useState([]);
   const id = 1;
   
-      useEffect(() => {
-        api.get(`/usuarios/${id}/documentos`
-          , {
-              headers: { Authorization: `Bearer ${token}` },
-            }
-          )
-          .then((response) => {
-            setDocs(response.data);
-          })
-          .catch((err) => {
-            console.error("Ops! Ocorreu um erro: " + err);
-          });
-      }, [token]);
+  useEffect(() => {
+    setDocs([
+      {'texto' : 'texto12345', 'autor' : 'juliana'},
+      {'texto' : 'texto12345', 'autor' : 'juliana'},
+      {'texto' : 'texto12345', 'autor' : 'juliana'},
+      {'texto' : 'texto12345', 'autor' : 'juliana'},
+      {'texto' : 'texto12345', 'autor' : 'juliana'},
+    ]);
+    //   api.get(`/usuarios/${id}/documentos`
+      //     , {
+      //         headers: { Authorization: `Bearer ${token}` },
+      //       }
+      //     )
+      //     .then((response) => {
+      //       setDocs(response.data);
+      //     })
+      //     .catch((err) => {
+      //       console.error("Ops! Ocorreu um erro: " + err);
+      //     });
+      }, []);
 
       function mapear() {
         const lista = [];
-        lista.push(docs?.forEach((doc, index) => {
-          console.log(index)
-          // <li>
-          //   Texto do documento {index+1}: {doc['texto']}
-          // </li>
-        }))
-        // docs.forEach(doc => (
-        //   // lista.push(<li>{doc?.texto}</li>)
-        //   lista.push(
-        //     doc.map((item, index) =>
-        //       <li key={index}>
-        //         <h3>{item.texto}</h3>
-        //       </li>
-        //     )
-        //   )
-        // ));
-
+        docs?.forEach((doc, index) => {
+          lista.push(
+            <Link className='textos' to={`/editar_documento/${index}`}>
+              <li>
+                <Card className='lista'>
+                  Documento {index+1}: {doc.texto}
+                </Card>
+              </li>
+            </Link>
+          )
+        })
         return lista;
       }
 
       return (
         <Container>
           <Row>
-            <Col className='col-4 colunaNovoDoc'>
+            <Col className='col-4'>
               <div className='novoDoc'>
                 <Link to="/">
                   <img className='imagemNovoDoc' src={newDocument}/>
                 </Link>
-                </div>
+              </div>
             </Col>
-            <Col className='col-8'>
-            <ul>{mapear()}</ul>
+            <Col className='col-8 colunaMostraDocs'>
+              {/* <Card className='lista'> */}
+                <ul>{mapear()}</ul>
+              {/* </Card> */}
             </Col>
           </Row>
         </Container>
       );
 }
 
-export default Grid;
+export default Documentos;
