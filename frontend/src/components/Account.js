@@ -71,8 +71,10 @@ function FormFloatingCustom() {
     <div>
       <FaRegCircleUser className="UserIcon mb-4" />
     </div>
-    <div>Nome atual: {user?.nome}</div>
-    <div>Email atual: {user?.email}</div>
+    <div className='dados'>
+      <div>Nome atual: {user?.nome}</div>
+      <div>Email atual: {user?.email}</div>
+    </div>
     <div className="formulario mt-4">
       <form onSubmit={handleSubmit(handlePutUser)}>
         <Form.Floating className="mb-4">

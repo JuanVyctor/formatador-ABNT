@@ -38,3 +38,14 @@
     color: black;
     border-color: black;
 }
+
+.dados{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 15px;
+    border-width: 2px;
+    border-color: lightgray;
+    box-shadow: 10px 10px 5px lightgrey;
+}
