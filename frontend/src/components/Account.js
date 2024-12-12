@@ -47,7 +47,7 @@ function FormFloatingCustom() {
     .then(() => {
       console.log(data);
       alert('Dados alterados com sucesso.');
-      navigate(`/perfil`);
+      navigate(`/meus_documentos`);
     }).catch((error) => {
       alert('Ocorreu um erro inesperado: ' + error.message);
     });

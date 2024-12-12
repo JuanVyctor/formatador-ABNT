@@ -41,8 +41,10 @@ class DocumentoController extends Controller
         $documento = Documento::find($docId);
         $texto = $request->input('texto');
 
-        if ($texto)
+        if ($texto) {
             $documento->texto = $texto;
+            $documento->texto_puro = strip_tags($texto);
+        }
 
         $documento->save();
     }
