@@ -28,7 +28,7 @@ const Home = () => {
         console.log('Ocorreu um erro inesperado: ' + error.message);
       });
     }
-  })
+  }, [])
   
   function formataTexto(texto) {
     return `<p style="text-align: justify; line-height: 1.5; text-indent: 1.25em; font-family: Arial, Times New Roman, serif; color: black; font-size: 12;">${texto}</p>`;
@@ -65,7 +65,8 @@ const Home = () => {
     
   useEffect(() => {
     $(editorRef.current).summernote("code", texto);
-  })
+  });
+  
   const addDoc = data => {
     if (token === null) {
       alert("Não é possível salvar um documento sem estar logado.");

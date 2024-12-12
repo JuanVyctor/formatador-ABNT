@@ -23,7 +23,7 @@ function Documentos() {
     }).catch((error) => {
       alert('Ocorreu um erro inesperado: ' + error.message);
     });
-  })
+  }, [])
 
   useEffect(() => {
     api.get(`/usuarios/${id}/documentos`, {
