@@ -23,7 +23,7 @@ function FormFloatingCustom() {
       .then((response) => {
         setId(response.data)
       }).catch((error) => {
-        console.log('Ocorreu um erro inesperado: ' + error.message);
+        alert('Ocorreu um erro inesperado: ' + error.message);
       });
     }
   }, []);
@@ -36,7 +36,7 @@ function FormFloatingCustom() {
         setUser(response.data);
       })
       .catch((err) => {
-        console.error("ops! ocorreu um erro" + err);
+        alert("ops! ocorreu um erro" + err);
       });
   }, [id]);
 
@@ -45,7 +45,6 @@ function FormFloatingCustom() {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then(() => {
-      console.log(data);
       alert('Dados alterados com sucesso.');
       navigate(`/meus_documentos`);
     }).catch((error) => {
@@ -57,7 +56,7 @@ function FormFloatingCustom() {
       api.delete(`/usuarios/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((response) => {
+      .then(() => {
         alert('Conta deletada com sucesso.');
         navigate(`/`);
       }).catch((error) => {

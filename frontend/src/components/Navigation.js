@@ -21,8 +21,7 @@ const Navigation = () => {
           headers: { Authorization: `Bearer ${token}` }, 
         }
       )
-      .then((response) => {
-        console.log(response);
+      .then(() => {
         alert("Você saiu com sucesso!");
         localStorage.removeItem("token");
         navigate("/"); 

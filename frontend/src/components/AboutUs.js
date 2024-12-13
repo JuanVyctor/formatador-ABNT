@@ -61,7 +61,7 @@ function RowColLayoutColWidthBreakpointExample() {
                 <Card className='m-3'>
                     <Card.Header className='fundoCardTitle'>Passo 4</Card.Header>
                     <Card.Body>
-                        <Card.Title> Se quiser, salve seu documento clicando em "Formatar" </Card.Title>
+                        <Card.Title> Se quiser, salve seu documento clicando em "Salvar" </Card.Title>
                         <Card.Img src={passo4} />
                     </Card.Body>
                 </Card>

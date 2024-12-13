@@ -75,9 +75,11 @@ const UpdateDoc = () => {
       .get(`/usuarios/documentos/${params.id}`, {
         headers : {Authorization: `Bearer ${token}`},
       })
-      .then((response) => {console.log(response.data); setDoc(response.data)})
+      .then((response) => {
+        setDoc(response.data)
+      })
       .catch((err) => {
-        console.error("ops! ocorreu um erro" + err);
+        alert("ops! ocorreu um erro" + err);
       });
 
     if (!editorRef.current) return;
@@ -121,7 +123,7 @@ const UpdateDoc = () => {
             className="mt-4 custom-button me-3"
             type="submit"
           >
-            Formatar
+            Atualizar
           </Button>
           <Button
             variant="light"

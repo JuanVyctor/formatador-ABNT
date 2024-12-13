@@ -25,7 +25,7 @@ const Home = () => {
       .then((response) => {
         setValue("usu_id", response.data)
       }).catch((error) => {
-        console.log('Ocorreu um erro inesperado: ' + error.message);
+        alert('Ocorreu um erro inesperado: ' + error.message);
       });
     }
   }, [])
@@ -80,7 +80,6 @@ const Home = () => {
         alert('Documento criado com êxito.');
         navigate(`/meus_documentos`);
       }).catch((error) => {
-        console.log(data)
         alert('Ocorreu um erro inesperado: ' + error.message);
       });
     }
@@ -110,7 +109,7 @@ const Home = () => {
           className="mt-4 custom-button"
           type="submit"
         >
-          Formatar
+          Salvar
         </Button>
       </form>
     </Container>
